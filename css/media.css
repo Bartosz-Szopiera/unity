@@ -1,0 +1,6 @@
+/*==Screen height < 624px = 39em */
+@media (min-height:39em){
+  div.wrapper1 div.body {
+    height: 650px;
+  }
+}
