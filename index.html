@@ -54,7 +54,7 @@
     </div>
     <div class="wrapper2">
       <div class="slideshowWrapper">
-        <div class="slidesFrame">
+        <div id="slideshowOne" class="slidesFrame">
           <div class="slideWrap">
             <a href="#">
               <div class="slide">
@@ -107,7 +107,45 @@
               </div>
             </a>
           </div>
-          <!-- 3 more slides  -->
+          <div class="slideWrap">
+            <a href="#">
+              <div class="slide">
+                <div class="image">
+                  <div class="expand"></div>
+                </div>
+                <div class="hr"></div>
+                <div class="summary">
+                  <h3>Because everyone should have the right to create - Learn about the sponsorship program</h3>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="slideWrap">
+            <a href="#">
+              <div class="slide">
+                <div class="image">
+                  <div class="expand"></div>
+                </div>
+                <div class="hr"></div>
+                <div class="summary">
+                  <h3>Because everyone should have the right to create - Learn about the sponsorship program</h3>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="slideWrap">
+            <a href="#">
+              <div class="slide">
+                <div class="image">
+                  <div class="expand"></div>
+                </div>
+                <div class="hr"></div>
+                <div class="summary">
+                  <h3>Because everyone should have the right to create - Learn about the sponsorship program</h3>
+                </div>
+              </div>
+            </a>
+          </div>
         </div>
         <div class="slidesFrame controls">
           <div class="slideWrap controls left">
@@ -115,7 +153,8 @@
                 <div class="image">
                   <div class="expand"></div>
                 </div>
-                <div class="button"></div>
+                <!-- <div id="slideshowOneLeft" class="button" onclick="goLeft()"></div> -->
+                <div id="slideshowOneLeft" class="button" ></div>
             </div>
           </div>
           <div class="slideWrap controls right">
@@ -123,18 +162,19 @@
                 <div class="image">
                   <div class="expand"></div>
                 </div>
-                <div class="button"></div>
+                <!-- <div id="slideshowOneRight" class="button" onclick="goRight()"></div> -->
+                <div id="slideshowOneRight" class="button" ></div>
             </div>
           </div>
         </div>
         <div class="dotMenu">
-          <span data-slide="0"></span>
-          <span data-slide="1"></span>
-          <span data-slide="2"></span>
-          <span data-slide="3"></span>
-          <span data-slide="4"></span>
-          <span data-slide="5"></span>
-          <span data-slide="6"></span>
+          <span data-slide="0" onclick="goSlide(this)"></span>
+          <span data-slide="1" onclick="goSlide(this)"></span>
+          <span data-slide="2" onclick="goSlide(this)"></span>
+          <span data-slide="3" onclick="goSlide(this)"></span>
+          <span data-slide="4" onclick="goSlide(this)"></span>
+          <span data-slide="5" onclick="goSlide(this)"></span>
+          <span data-slide="6" onclick="goSlide(this)"></span>
         </div>
       </div>
     </div>
@@ -414,4 +454,9 @@
       </div>
     </div>
   </body>
+  <script type="text/javascript" src="js/effects.js"></script>
+  <script type="text/javascript">
+    window.addEventListener('load', prepareSlides);
+    enableHandlers();
+  </script>
 </html>

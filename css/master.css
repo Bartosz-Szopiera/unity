@@ -138,10 +138,12 @@ div.wrapper2 div.slidesFrame {
   /*left: -48%;*/
 }
 div.wrapper2 div.slideWrap {
+  position: relative;
   box-sizing: border-box;
+  border: 1px solid;
   flex: 0 0 auto;
   /* NOTE: control number of slides */
-  width: 50%;
+  width: 33%;
   padding: 0px 2%;
 }
 div.wrapper2 div.slide {
@@ -225,13 +227,6 @@ div.wrapper2 div.controls.left div.button::before {
 div.wrapper2 div.controls.right div.button::before {
   content: '\e92a';
 }
-/*---------Slides order----------*/
-div.wrapper2 div.slidesFrame:not(.controls) div.slideWrap:nth-of-type(1) {
-  order:1;
-}
-
-
-
 /*---Slideshow dots to navigate*/
 div.wrapper2 div.dotMenu {
   margin: auto;
