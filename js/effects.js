@@ -14,8 +14,6 @@
   slideWidth = Math.round(slideWidth); //%
 // Number of slides fitting on the screen
   var inView = Math.round(100 / slideWidth);
-// Correct slide width
-  slideWidth = parseInt(100/inView*100)/100; //%
 // ==================================
 // Get the index of the leftmost
 // currently displayed slide
@@ -23,10 +21,9 @@
   function getLeftSlide() {
     var left;
     for (var i = 0; i < slidesTot; i++) {
-      left = parseInt(getComputedStyle(slides[i]).left);
+      left = parseInt(slides[i].style.left);
       if (left==0) leftSlide = i;
     }
-    console.log('leftSlide: ' + leftSlide);
   }
 // ==================================
 // Handle user navigation requests
@@ -67,7 +64,6 @@
       el = leftSlide + inView;
       if (slidesTot <= el ) el = el - slidesTot;
       slides[el].style.left = inView * slideWidth + '%';
-      // console.log('Prepared element: ' + (leftSlide + inView) );
     }
     else if (goDir < 0 && range == 1){
       // Get the slide to prepare
@@ -75,23 +71,37 @@
       // i = leftSlide + inView;
       if (el < 0 ) el = el + slidesTot;
       slides[el].style.left = -slideWidth + '%';
-      // console.log('Element ' + el + ' moved to: ' + (-slideWidth) + '%');
     }
     else {
       // This movement can be greater than
       // by signle slide but never circle
       // between ending slides
       if (goDir > 0) {
-        // el = leftSlide + inView;
-        // for (var i = 0; i < range; i++) {
-        //   slides[el + i].style.left = (inView + i) * slideWidth + '%';
-        // }
+        // Index of target element
+        el = leftSlide + range;
+        var clone = [];
+        for (var i = 0; i < inView - (slidesTot - range); i++) {
+          clone[i] = slides[i].cloneNode(true);
+          frame.appendChild(clone[i]);
+          clone[i].style.removeProperty('transform');
+          clone[i].style.position = 'absolute';
+          clone[i].classList.add('evilClone');
+          slides[i].style.left = (slidesTot + i) * (slideWidth) + '%';
+        }
+        return clone;
       }
       else {
+        var clone = [];
+        for (var j = 0; j < inView - (slidesTot - range); j++) {
+          clone[j] = slides[j].cloneNode(true);
+          frame.appendChild(clone[j]);
+          clone[j].style.removeProperty('transform');
+          clone[j].style.position = 'absolute';
+          clone[j].classList.add('evilClone');
+        }
         el = leftSlide - range;
         for (var i = 0; i < range; i++) {
           slides[el + i].style.left = (range - i) * (-slideWidth) + '%';
-          if ((el + i ) == 0) console.log((range - i) * (-slideWidth));
         }
       }
     }
@@ -103,25 +113,30 @@ var duration = 0.5; // s
 var rightSlide;
   function moveSlides(){
     var left;
-    for (var i = 0; i < slidesTot; i++){
+    var clones = document.getElementsByClassName('evilClone').length;
+    for (var i = 0; i < slides.length; i++){
       slides[i].style.transition = 'left ' + duration +'s';
       left = parseInt(slides[i].style.left);
       slides[i].style.left = (left + slideWidth * -goDir * range) + '%';
     }
     // Position of the righmost slide
-    rightSlide = parseInt(slides[i - 1].style.left);
+    rightSlide = parseInt(slides[i - 1 - clones].style.left);
   }
 // ==================================
 // Get the slides  with negative 'left' (beyond left
 // viewport border) outside the border of the
 // the viewport (ready for viewport resize)
   function leftToRight() {
+    var len = document.getElementsByClassName('evilClone').length;
+    for (var i = 0; i < len; i++) {
+      var clones = document.getElementsByClassName('evilClone');
+      frame.removeChild(clones[0]);
+    }
     var left;
-    for (var i = 0; i < slidesTot; i++) {
+    for (var i = 0; i < slides.length; i++) {
       slides[i].style.transition = 'left 0s';
-      // left = parseInt(rightSlide.style.left);
-      left = parseInt(getComputedStyle(slides[i]).left);
-      if (left < 0 && left < -0.9*slideWidth/100*frameWidth) slides[i].style.left =
+      left = parseInt(slides[i].style.left);
+      if (left < 0 && left < -0.9*slideWidth) slides[i].style.left =
         rightSlide + (i + 1) * slideWidth + '%';
     }
   }
@@ -198,6 +213,12 @@ function slideshow() {
 
 // Change measurment system from width and left to just
 // translation and absolutely positioned slides
+
+// Problem with this slideshow can't be resolved without
+// clopying/cloning elements. Imageine you have just two
+// slides, and they are two visible at once. When you circle
+// through them you need to so one of them in two places at once.
+// It can't be done without cloning.
 
 
 // To handle missing slides for movements with range

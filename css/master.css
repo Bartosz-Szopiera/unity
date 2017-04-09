@@ -140,7 +140,7 @@ div.wrapper2 div.slidesFrame {
 div.wrapper2 div.slideWrap {
   position: relative;
   box-sizing: border-box;
-  border: 1px solid;
+  /*border: 1px solid;*/
   flex: 0 0 auto;
   /* NOTE: control number of slides */
   width: 33%;
