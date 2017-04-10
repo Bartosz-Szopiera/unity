@@ -1,8 +1,6 @@
 //-=-=-=-=-=-SLIDESHOW-=-=-=-=-=-=-
 // Generic element
   var el;
-// Event invoker identifier ('this')
-  // var target;
 // Slides wrapper
   var frame = document.getElementById('slideshowOne');
 // Left button
@@ -49,12 +47,10 @@
       goDir = -1;
       range = 1;
       slideshow();
-      if (this != window) setTimeout( autoShow , duration*1000)
-      console.log('duration from goLeft: ' + duration);
+      if (this != window) setTimeout( autoShow , duration*1000);
     }
   // Right button handler
     function goRight() {
-      console.log();
       if (this != window) clearInterval(interId);
       // getLeftSlide();
       lightDot();
@@ -62,12 +58,12 @@
       goDir = 1;
       range = 1;
       slideshow();
-      if (this != window) setTimeout( autoShow , duration*1000)
-      console.log('duration from goRight: ' + duration);
+      if (this != window) setTimeout( autoShow , duration*1000);
     }
   // Get the goNth slide handler
+  // though 'target' this is handled from the DOM
     function goSlide(target) {
-      // clearInterval(interId);
+      clearInterval(interId);
       lightDot();
       goNth = target.dataset.slide;
       getLeftSlide();
@@ -77,7 +73,7 @@
       // Positive: user goes right, slides go left
         range = Math.abs(goNth - leftSlide);
       slideshow(target);
-      // autoShow(duration);
+      setTimeout( autoShow , duration*1000);
     }
 // ==================================
 // Rearange not visible slides
@@ -85,15 +81,9 @@
   function arrangeSlides() {
     // User browse slide on the right
     if (goDir > 0 && range == 1){
-      // This block is *USELESS*
       //  since all not visible slides are after
       //  movement kept beyond right viewport border
-      //  any arrangement prior the move is futile
-      // el - element index
-      // el = leftSlide + inView;
-      // if (slidesTot <= el ) el = el - slidesTot;
-      // slides[el].style.left = inView * slideWidth + '%';
-      // console.log('');
+      //  any arrangement prior such move is not needed
     }
     else if (goDir < 0 && range == 1){
       el = leftSlide - 1;
@@ -220,15 +210,8 @@ function slideshow(target) {
 var cycleTime = 4; //s
 var interId;
 
-// function autoShow(target, goDir, range, someTime) {
 function autoShow(duration) {
-  // target = "";
-  // goDir = 1;
-  // range = 1;
-  // console.log(someTime);
   if (!Number(duration)) duration = 0;
-  console.log(duration);
-  // interId = setInterval (slideshow, (cycleTime*1000 + duration*1000));
   interId = setInterval (goRight, (cycleTime*1000 + duration*1000));
 }
 
@@ -247,7 +230,29 @@ function lightDot() {
   dotMenu[leftSlide].classList.toggle('active');
 }
 
-// =====================================
+var suspended;
+
+function suspendShow() {
+  clearInterval(interId);
+  suspended = true;
+}
+
+function recommenceShow() {
+  if (suspended) {
+    interId = setInterval (goRight, (cycleTime*1000 + duration*1000));
+  }
+}
+
+function slideMouseEvent() {
+  console.log('i\'m in');
+  for (var i = 0; i < slides.length; i++) {
+    console.log('double in');
+    slides[i].addEventListener('mouseenter', suspendShow);
+    slides[i].addEventListener('mouseleave', recommenceShow);
+  }
+}
+
+// ==========REMARKS================
 // Change measurment system from width and left to just
 // translation and absolutely positioned slides
 
