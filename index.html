@@ -147,14 +147,13 @@
             </a>
           </div>
         </div>
-        <div class="slidesFrame controls">
+        <div id="slideControlsOne" class="slidesFrame controls">
           <div class="slideWrap controls left">
             <div class="slide">
                 <div class="image">
                   <div class="expand"></div>
                 </div>
-                <!-- <div id="slideshowOneLeft" class="button" onclick="goLeft()"></div> -->
-                <div id="slideshowOneLeft" class="button" ></div>
+                <div id="slideshowOneLeft" class="button eventDriven" ></div>
             </div>
           </div>
           <div class="slideWrap controls right">
@@ -162,19 +161,24 @@
                 <div class="image">
                   <div class="expand"></div>
                 </div>
-                <!-- <div id="slideshowOneRight" class="button" onclick="goRight()"></div> -->
-                <div id="slideshowOneRight" class="button" ></div>
+                <div id="slideshowOneRight" class="button eventDriven" ></div>
             </div>
           </div>
         </div>
-        <div class="dotMenu">
-          <span data-slide="0" onclick="goSlide(this)"></span>
-          <span data-slide="1" onclick="goSlide(this)"></span>
-          <span data-slide="2" onclick="goSlide(this)"></span>
-          <span data-slide="3" onclick="goSlide(this)"></span>
-          <span data-slide="4" onclick="goSlide(this)"></span>
-          <span data-slide="5" onclick="goSlide(this)"></span>
-          <span data-slide="6" onclick="goSlide(this)"></span>
+        <!-- <div id="slideDotMenuOne" class="dotMenuWrapper"> -->
+        <div class="dotMenuWrapper">
+          <div id="slideDotMenuOne" class="dotMenu">
+            <span data-slide="0" onclick="goSlide(this)" class="active"></span>
+            <span data-slide="1" onclick="goSlide(this)"></span>
+            <span data-slide="2" onclick="goSlide(this)"></span>
+            <span data-slide="3" onclick="goSlide(this)"></span>
+            <span data-slide="4" onclick="goSlide(this)"></span>
+            <span data-slide="5" onclick="goSlide(this)"></span>
+            <span data-slide="6" onclick="goSlide(this)"></span>
+            <div class="shieldWrapper">
+              <div class="shield"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -456,7 +460,12 @@
   </body>
   <script type="text/javascript" src="js/effects.js"></script>
   <script type="text/javascript">
-    window.addEventListener('load', prepareSlides);
+    // window.addEventListener('load', prepareSlides);
+    window.addEventListener('load', onLoad);
     enableHandlers();
+
+    // autoShow();
+    // window.addEventListener('load', autoShow());
+
   </script>
 </html>

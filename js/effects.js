@@ -1,8 +1,12 @@
 //-=-=-=-=-=-SLIDESHOW-=-=-=-=-=-=-
 // Generic element
   var el;
-  // Slides wrapper
+// Event invoker identifier ('this')
+  // var target;
+// Slides wrapper
   var frame = document.getElementById('slideshowOne');
+// Dot menu
+  var dotMenu = document.getElementById('slideDotMenuOne').children;
 // Array of slides
   var slides = frame.children;
 // Total number of slides in slideshow
@@ -32,50 +36,70 @@
   var range = 0;
   // Left button handler
     function goLeft() {
+      // clearInterval(interId);
+      getLeftSlide();
+      lightDot();
+      target = "";
       goDir = -1;
       range = 1;
       slideshow();
+      // autoShow(duration);
     }
   // Right button handler
     function goRight() {
+      // clearInterval(interId);
+      getLeftSlide();
+      lightDot();
+      console.log('goRight/goLeft leftSlide: ' + leftSlide);
+      target = "";
       goDir = 1;
       range = 1;
       slideshow();
+      // autoShow(duration);
     }
   // Get the goNth slide handler
-    function goSlide(eveTarget) {
-      goNth = eveTarget.dataset.slide;
+    function goSlide(target) {
+      // clearInterval(interId);
+      lightDot();
+      goNth = target.dataset.slide;
       getLeftSlide();
       if (goNth == leftSlide) goDir = 0;
       else goDir = goNth > leftSlide ? 1 : -1;
       // Number of slides to goNth slide
       // Positive: user goes right, slides go left
         range = Math.abs(goNth - leftSlide);
-      slideshow();
+      slideshow(target);
+      // autoShow(duration);
     }
 // ==================================
 // Rearange not visible slides
 // before their appearance on screen
   function arrangeSlides() {
-    // Referencial slide
+    // User browse slide on the right
     if (goDir > 0 && range == 1){
-      // Get the slide to prepare
+      // This block is *USELESS*
+      //  since all not visible slides are after
+      //  movement kept beyond right viewport border
+      //  any arrangement prior the move is futile
       // el - element index
-      el = leftSlide + inView;
-      if (slidesTot <= el ) el = el - slidesTot;
-      slides[el].style.left = inView * slideWidth + '%';
+      // el = leftSlide + inView;
+      // if (slidesTot <= el ) el = el - slidesTot;
+      // slides[el].style.left = inView * slideWidth + '%';
+      // console.log('');
     }
     else if (goDir < 0 && range == 1){
-      // Get the slide to prepare
       el = leftSlide - 1;
       // i = leftSlide + inView;
       if (el < 0 ) el = el + slidesTot;
+      slides[el].style.transition = 'left 0s';
       slides[el].style.left = -slideWidth + '%';
+      console.log('arranging slides');
     }
+    // User browse slide on the left
     else {
-      // This movement can be greater than
-      // by signle slide but never circle
-      // between ending slides
+      // This movement greater than one
+      // slide slot but never circling
+      // between ends of whole slideshow
       if (goDir > 0) {
         // Index of target element
         el = leftSlide + range;
@@ -121,6 +145,7 @@ var rightSlide;
     }
     // Position of the righmost slide
     rightSlide = parseInt(slides[i - 1 - clones].style.left);
+    console.log('moving slides');
   }
 // ==================================
 // Get the slides  with negative 'left' (beyond left
@@ -151,32 +176,68 @@ var rightSlide;
     }
   }
 // ==================================
-// Disable handlers untill function ends
-function disableHandlers() {
+// Disable handlers
+function disableHandlers(target) {
   el = document.getElementById('slideshowOneLeft');
   el.removeEventListener('click', goLeft );
   el = document.getElementById('slideshowOneRight');
   el.removeEventListener('click', goRight );
-  // var dotMenu =
+  // el = target;
+  // if (el) el.className += ' active';
 }
 // ==================================
-// Enable back handlers
-function enableHandlers() {
+// Enable handlers
+function enableHandlers(target) {
   el = document.getElementById('slideshowOneLeft');
   el.addEventListener('click', goLeft );
   el = document.getElementById('slideshowOneRight');
   el.addEventListener('click', goRight );
+  // el = target;
+  // if (el) el.classList.remove('active');
 }
 // ==================================
 // Boundled functions
-function slideshow() {
-  disableHandlers();
-  // leftToRight();
-  getLeftSlide();
+function slideshow(target) {
+  disableHandlers(target);
   arrangeSlides();
+  // setTimeout for asynchronicity, it is ugly but works
   setTimeout (moveSlides, 0);
+  setTimeout (getLeftSlide, 1);
+  setTimeout (lightDot, 2);
   setTimeout (leftToRight, duration*1000);
-  setTimeout (enableHandlers, (duration*1000));
+  setTimeout (enableHandlers, (duration*1000), target);
+}
+
+var cycleTime = 4; //s
+var interId;
+
+function autoShow(someTime) {
+  target = "";
+  goDir = 1;
+  // range = 1;
+  // if (someTime) duration = someTime;
+  // interId = setInterval (slideshow, (cycleTime*1000 + duration*1000));
+}
+
+
+// Function that activates or desactivates
+// current leftSlide dot. Should be run before slides
+// move, and just after their new positions get defined
+function lightDot() {
+  if(!leftSlide) {
+    getLeftSlide();
+  }
+  dotMenu[leftSlide].classList.toggle('active');
+}
+
+
+function resetInterval() {
+  clearInterval(interId);
+}
+
+function onLoad() {
+  prepareSlides();
+  // lightDot();
 }
 
 // Event handlers:
@@ -193,24 +254,6 @@ function slideshow() {
   // enableHandlers();
 
 
-// Investigate disappearing elements when moving by *OK*
-// range greater than 1. Delay is acceptable, but
-// not that element disappears.
-
-// Leve current system for moving by single slide, it *OK*
-// is good.
-
-// Add duplicates of slides on the left of Slideshow
-// and on the right. They will become visible when
-// fast scrolling (range > 1) will be needed. Actual
-// slides will appear with slite delay.
-
-// Hide clickable part of dotMenu when event is triggerd
-// for the time of the animation
-
-// Make leftToRight operate not on the life reading,
-// but the values passes to it by the moveSlides
-
 // Change measurment system from width and left to just
 // translation and absolutely positioned slides
 
@@ -219,7 +262,6 @@ function slideshow() {
 // slides, and they are two visible at once. When you circle
 // through them you need to so one of them in two places at once.
 // It can't be done without cloning.
-
 
 // To handle missing slides for movements with range
 // greater than 1 just use the same moveSlides and
@@ -230,4 +272,5 @@ function slideshow() {
   // of setInterval function that was queuying movement
   // of slides. Handling delay was complicated and
   // I was not controlling leakage of variables values
+  // between separate function invokations
   // leading to erratic and unwanted results.

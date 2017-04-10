@@ -232,6 +232,7 @@ div.wrapper2 div.dotMenu {
   margin: auto;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 div.wrapper2 div.dotMenu span {
   flex: 0 0 auto;
@@ -251,4 +252,28 @@ div.wrapper2 div.dotMenu span:hover {
 div.wrapper2 div.dotMenu span.active {
   border: 1px solid black;
   background: black;
+}
+div.wrapper2 div.dotMenu span.active {
+  border: 1px solid black;
+  background: black;
+}
+
+/*div.wrapper2 div.dotMenu span.active ~ div.shieldWrapper div.shield {
+  z-index: 1;
+}*/
+div.wrapper2 div.dotMenu div.shield.active {
+  z-index: 1;
+}
+div.wrapper2 div.dotMenu div.shieldWrapper {
+  height: 0px;
+  width: 0px;
+}
+div.wrapper2 div.dotMenu div.shield {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /*background: transparent;*/
+  background: rgba(68, 102, 92, 0.53);
+  z-index: -1;
+  left: 0px;
 }
