@@ -5,8 +5,14 @@
   // var target;
 // Slides wrapper
   var frame = document.getElementById('slideshowOne');
+// Left button
+  var lButton = document.getElementById('slideshowOneLeft');
+// Right button
+  var rButton = document.getElementById('slideshowOneRight');
 // Dot menu
   var dotMenu = document.getElementById('slideDotMenuOne').children;
+// Element that can occlude dotMenu
+  var blockMenu = document.getElementById('blockMenuOne');
 // Array of slides
   var slides = frame.children;
 // Total number of slides in slideshow
@@ -36,26 +42,28 @@
   var range = 0;
   // Left button handler
     function goLeft() {
-      // clearInterval(interId);
-      getLeftSlide();
+      if (this != window) clearInterval(interId);
+      // getLeftSlide();
       lightDot();
       target = "";
       goDir = -1;
       range = 1;
       slideshow();
-      // autoShow(duration);
+      if (this != window) setTimeout( autoShow , duration*1000)
+      console.log('duration from goLeft: ' + duration);
     }
   // Right button handler
     function goRight() {
-      // clearInterval(interId);
-      getLeftSlide();
+      console.log();
+      if (this != window) clearInterval(interId);
+      // getLeftSlide();
       lightDot();
-      console.log('goRight/goLeft leftSlide: ' + leftSlide);
       target = "";
       goDir = 1;
       range = 1;
       slideshow();
-      // autoShow(duration);
+      if (this != window) setTimeout( autoShow , duration*1000)
+      console.log('duration from goRight: ' + duration);
     }
   // Get the goNth slide handler
     function goSlide(target) {
@@ -93,7 +101,6 @@
       if (el < 0 ) el = el + slidesTot;
       slides[el].style.transition = 'left 0s';
       slides[el].style.left = -slideWidth + '%';
-      console.log('arranging slides');
     }
     // User browse slide on the left
     else {
@@ -145,7 +152,6 @@ var rightSlide;
     }
     // Position of the righmost slide
     rightSlide = parseInt(slides[i - 1 - clones].style.left);
-    console.log('moving slides');
   }
 // ==================================
 // Get the slides  with negative 'left' (beyond left
@@ -178,23 +184,26 @@ var rightSlide;
 // ==================================
 // Disable handlers
 function disableHandlers(target) {
-  el = document.getElementById('slideshowOneLeft');
-  el.removeEventListener('click', goLeft );
-  el = document.getElementById('slideshowOneRight');
-  el.removeEventListener('click', goRight );
-  // el = target;
-  // if (el) el.className += ' active';
+  lButton.removeEventListener('click', goLeft );
+  rButton.removeEventListener('click', goRight );
+  blockMenu.style.zIndex = '1';
 }
 // ==================================
 // Enable handlers
 function enableHandlers(target) {
-  el = document.getElementById('slideshowOneLeft');
-  el.addEventListener('click', goLeft );
-  el = document.getElementById('slideshowOneRight');
-  el.addEventListener('click', goRight );
-  // el = target;
-  // if (el) el.classList.remove('active');
+  lButton.addEventListener('click', goLeft );
+  rButton.addEventListener('click', goRight );
+  blockMenu.style.zIndex = '-1';
 }
+
+function handlerLeft() {
+  goleft();
+}
+
+function handlerRight() {
+  goRight();
+}
+
 // ==================================
 // Boundled functions
 function slideshow(target) {
@@ -207,19 +216,27 @@ function slideshow(target) {
   setTimeout (leftToRight, duration*1000);
   setTimeout (enableHandlers, (duration*1000), target);
 }
-
+// ====================================
 var cycleTime = 4; //s
 var interId;
 
-function autoShow(someTime) {
-  target = "";
-  goDir = 1;
+// function autoShow(target, goDir, range, someTime) {
+function autoShow(duration) {
+  // target = "";
+  // goDir = 1;
   // range = 1;
-  // if (someTime) duration = someTime;
+  // console.log(someTime);
+  if (!Number(duration)) duration = 0;
+  console.log(duration);
   // interId = setInterval (slideshow, (cycleTime*1000 + duration*1000));
+  interId = setInterval (goRight, (cycleTime*1000 + duration*1000));
 }
 
+function resetInterval() {
+  clearInterval(interId);
+}
 
+// ==================================
 // Function that activates or desactivates
 // current leftSlide dot. Should be run before slides
 // move, and just after their new positions get defined
@@ -230,30 +247,7 @@ function lightDot() {
   dotMenu[leftSlide].classList.toggle('active');
 }
 
-
-function resetInterval() {
-  clearInterval(interId);
-}
-
-function onLoad() {
-  prepareSlides();
-  // lightDot();
-}
-
-// Event handlers:
-  // prepareSlides();
-  // goLeft();
-  // goRight();
-  // goSlide();
-// Other functions:
-  // disableHandlers();
-  // getLeftSlide();
-  // arrangeSlides();
-  // moveSlides();
-  // leftToRight();
-  // enableHandlers();
-
-
+// =====================================
 // Change measurment system from width and left to just
 // translation and absolutely positioned slides
 

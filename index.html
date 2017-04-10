@@ -165,7 +165,6 @@
             </div>
           </div>
         </div>
-        <!-- <div id="slideDotMenuOne" class="dotMenuWrapper"> -->
         <div class="dotMenuWrapper">
           <div id="slideDotMenuOne" class="dotMenu">
             <span data-slide="0" onclick="goSlide(this)" class="active"></span>
@@ -175,7 +174,7 @@
             <span data-slide="4" onclick="goSlide(this)"></span>
             <span data-slide="5" onclick="goSlide(this)"></span>
             <span data-slide="6" onclick="goSlide(this)"></span>
-            <div class="shieldWrapper">
+            <div id="blockMenuOne" class="blockMenu">
               <div class="shield"></div>
             </div>
           </div>
@@ -460,12 +459,11 @@
   </body>
   <script type="text/javascript" src="js/effects.js"></script>
   <script type="text/javascript">
-    // window.addEventListener('load', prepareSlides);
-    window.addEventListener('load', onLoad);
+    window.addEventListener('load', prepareSlides);
     enableHandlers();
 
     // autoShow();
-    // window.addEventListener('load', autoShow());
+    window.addEventListener('load', autoShow);
 
   </script>
 </html>
