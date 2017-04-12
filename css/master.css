@@ -148,6 +148,7 @@ div.wrapper2 div.slideWrap {
 }
 div.wrapper2 div.slide {
   width: 100%;
+  border: 1px solid red;
 }
 div.wrapper2 div.image {
   width: 100%;
@@ -177,9 +178,8 @@ div.wrapper2 div.slidesFrame.controls {
   justify-content: space-between;
   position: absolute;
   overflow: visible;
-  border-bottom: 1px solid;
   top: 0%;
-  left: -1000px;
+  left: -2000px;
 }
 div.wrapper2 div.slidesFrame.controls div.slide {
   background: none;
@@ -188,7 +188,6 @@ div.wrapper2 div.slidesFrame.controls div.expand {
   background: none;
 }
 div.wrapper2 div.controls div.slide {
-  border: 1px solid red;
   position: relative;
 }
 /*---Slideshow left/right buttons*/
@@ -208,11 +207,11 @@ div.wrapper2 div.controls div.button:hover {
   cursor: pointer;
 }
 div.wrapper2 div.controls.left div.button {
-  transform: translate(1000px, -20px);
+  transform: translate(2000px, -20px);
   left: -20px;
 }
 div.wrapper2 div.controls.right div.button {
-  transform: translate(1000px, -20px);
+  transform: translate(2000px, -20px);
   right: -20px;
 }
 div.wrapper2 div.controls div.button {

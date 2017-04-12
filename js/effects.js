@@ -40,30 +40,33 @@
   var range = 0;
   // Left button handler
     function goLeft() {
-      if (this != window) clearInterval(interId);
+      if (this != window) {
+        suspendShow();
+        setTimeout( autoShow , duration*1000);
+      }
       // getLeftSlide();
       lightDot();
       target = "";
       goDir = -1;
       range = 1;
       slideshow();
-      if (this != window) setTimeout( autoShow , duration*1000);
     }
   // Right button handler
     function goRight() {
-      if (this != window) clearInterval(interId);
-      // getLeftSlide();
+      if (this != window) {
+        suspendShow();
+        setTimeout( autoShow , duration*1000);
+      }
       lightDot();
       target = "";
       goDir = 1;
       range = 1;
       slideshow();
-      if (this != window) setTimeout( autoShow , duration*1000);
     }
   // Get the goNth slide handler
   // though 'target' this is handled from the DOM
     function goSlide(target) {
-      clearInterval(interId);
+      suspendShow();
       lightDot();
       goNth = target.dataset.slide;
       getLeftSlide();
@@ -186,14 +189,6 @@ function enableHandlers(target) {
   blockMenu.style.zIndex = '-1';
 }
 
-function handlerLeft() {
-  goleft();
-}
-
-function handlerRight() {
-  goRight();
-}
-
 // ==================================
 // Boundled functions
 function slideshow(target) {
@@ -209,16 +204,15 @@ function slideshow(target) {
 // ====================================
 var cycleTime = 4; //s
 var interId;
+var intervals = [];
 
 function autoShow(duration) {
-  if (!Number(duration)) duration = 0;
-  interId = setInterval (goRight, (cycleTime*1000 + duration*1000));
+  if (intervals.length == 0) {
+    if (!Number(duration)) duration = 0;
+    interId = setInterval (goRight, (cycleTime*1000 + duration*1000));
+    intervals.push(interId);
+  }
 }
-
-function resetInterval() {
-  clearInterval(interId);
-}
-
 // ==================================
 // Function that activates or desactivates
 // current leftSlide dot. Should be run before slides
@@ -229,47 +223,20 @@ function lightDot() {
   }
   dotMenu[leftSlide].classList.toggle('active');
 }
-
-var suspended;
-
+// ================================================
+//
 function suspendShow() {
-  clearInterval(interId);
-  suspended = true;
-}
-
-function recommenceShow() {
-  if (suspended) {
-    interId = setInterval (goRight, (cycleTime*1000 + duration*1000));
+  for (var i = 0; i < intervals.length; i++) {
+    clearInterval(intervals[i]);
   }
+  intervals.splice(0,intervals.length);
 }
-
+// ================================================
+// suspend slideshow when user hover ofer the slide
+// and restart when mouse leaves slides
 function slideMouseEvent() {
-  console.log('i\'m in');
   for (var i = 0; i < slides.length; i++) {
-    console.log('double in');
     slides[i].addEventListener('mouseenter', suspendShow);
-    slides[i].addEventListener('mouseleave', recommenceShow);
+    slides[i].addEventListener('mouseleave', autoShow);
   }
 }
-
-// ==========REMARKS================
-// Change measurment system from width and left to just
-// translation and absolutely positioned slides
-
-// Problem with this slideshow can't be resolved without
-// clopying/cloning elements. Imageine you have just two
-// slides, and they are two visible at once. When you circle
-// through them you need to so one of them in two places at once.
-// It can't be done without cloning.
-
-// To handle missing slides for movements with range
-// greater than 1 just use the same moveSlides and
-// leftToRight functions but repeated multiple times
-// and with duration multiple times shorter
-  // Sadly, this apporach failed. At least in a way
-  // I was trying to accomplish ty, i.e. by the means
-  // of setInterval function that was queuying movement
-  // of slides. Handling delay was complicated and
-  // I was not controlling leakage of variables values
-  // between separate function invokations
-  // leading to erratic and unwanted results.
