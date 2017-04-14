@@ -214,7 +214,7 @@ function enableHandlers() {
 // ====================================
 function autoShow(duration) {
   // Create new interval and store its id in array
-  var cycleTime = 5;  //interval in s
+  var cycleTime = 4;  //interval in s
   if (intervals.length == 0) {
     if (!Number(duration)) duration = 0;
     interId = setInterval (goRight, (cycleTime*1000 + duration*1000));
