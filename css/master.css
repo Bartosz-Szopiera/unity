@@ -55,7 +55,7 @@ div.wrapper1 div.header ul {
 div.wrapper1 div.header li {
   padding: 0px 6px;
 }
-div.wrapper1 div.logo {
+#logo {
   width: 40px;
   height: 40px;
   padding: 10px;
@@ -418,7 +418,6 @@ div.wrapper5 .showcase>div .linkWrapper * {
 }
 div.wrapper5 .showcase .video {
   background: #333;
-  /*background-clip: content-box;*/
   text-align: center;
   padding-top: 20px;
   margin-bottom: 20px;
@@ -461,3 +460,137 @@ div.wrapper6 .linkWrapper {
   justify-content: center;
 }
 /*======================*/
+div.wrapper7 {
+  padding: 0px 5%;
+  font-size: 1.5em;
+  line-height: 1.5em;
+}
+div.wrapper7>.header {
+  padding: 30px 0px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+div.wrapper7>.header .topLink {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgb(12, 59, 93);
+  overflow: hidden;
+}
+div.wrapper7>.header .topLink a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+div.wrapper7>.body.sitemap.newsletter.language {
+  box-sizing: border-box;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-wrap: nowrap;
+}
+/*--------Sitemap-----------*/
+div.wrapper7>.body>.sitemap {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+div.wrapper7>.body>.sitemap .header {
+  width: 100%;
+}
+div.wrapper7>.body>.sitemap>div {
+  width: 25%;
+}
+div.wrapper7>.body>.sitemap ul {
+  padding: 0px;
+}
+div.wrapper7>.body>.sitemap li {
+  list-style: none;
+}
+/*---Wrapper(Newsletter, Language)----*/
+div.wrapper7>.body>.wrapper.newsletter.language {
+  width: 30%;
+}
+/*--------Newsletter--------*/
+div.wrapper7>.body>.newsletter .header {
+  width: 100%;
+}
+/*--------Language--------*/
+div.wrapper7>.body>.wrapper>.language {
+  max-height: 100px;
+}
+div.wrapper7>.body>.wrapper>.language .header {
+  width: 100%;
+}
+div.wrapper7>.body>.wrapper>.language ul {
+  max-height: 80px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 0px 10px;
+}
+div.wrapper7>.body>.wrapper>.language li {
+  list-style: none;
+  padding: 0px 10px;
+}
+/*--------Partners--------*/
+div.wrapper7>.body.partners {
+  width: 100%;
+}
+div.wrapper7>.body.partners .header {
+  width: 100%;
+}
+div.wrapper7>.body.partners ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0px;
+}
+div.wrapper7>.body.partners li {
+  list-style: none;
+  margin: 5px;
+  /* NOTE: placeholder below */
+  width: 100px;
+  height: 30px;
+  background: #ccc;
+}
+/*--------Footer--------*/
+div.wrapper7>.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px -1px 0px 0px #ccc;
+  padding: 20px 0px;
+}
+div.wrapper7>.footer .legalInfo{
+  display: flex;
+}
+div.wrapper7>.footer .legalInfo .copyrights {
+  padding-right: 10px;
+}
+div.wrapper7>.footer .legalInfo ul {
+  padding: 0px;
+}
+div.wrapper7>.footer .legalInfo li {
+  list-style: none;
+  display: inline-block;
+  padding-right: 10px;
+}
+div.wrapper7>.footer .socialMedia ul {
+  padding: 0px;
+  margin: 0px;
+}
+div.wrapper7>.footer .socialMedia li {
+  width: 40px;
+  height: 40px;
+  list-style: none;
+  margin: 0px 5px;
+  float: right;
+  background: #ccc;
+  overflow: hidden;
+}
+div.wrapper7>.footer .socialMedia img {
+
+}
