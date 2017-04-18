@@ -13,7 +13,7 @@
     <div class="wrapper1">
       <div class="header">
         <div class="menu left">
-          <div id="logo" class="logo">
+          <div class="logo">
             <a href="#"></a>
           </div>
           <ul>
@@ -55,11 +55,11 @@
     </div>
     <div class="wrapper2">
       <div class="slideshowWrapper">
-        <div id="slideshowOne" class="slidesFrame">
+        <div id="slideshowOne" data-slideshow_index="0" class="slideshow slidesFrame">
           <div class="slideWrap">
             <a href="#">
               <div class="slide">
-                <div class="slideshowOne image">
+                <div class="slideshow image">
                   <div class="expand"></div>
                 </div>
                 <div class="hr"></div>
@@ -72,7 +72,7 @@
           <div class="slideWrap">
             <a href="#">
               <div class="slide">
-                <div class="slideshowOne image">
+                <div class="slideshow image">
                   <div class="expand"></div>
                 </div>
                 <div class="hr"></div>
@@ -85,7 +85,7 @@
           <div class="slideWrap">
             <a href="#">
               <div class="slide">
-                <div class="slideshowOne image">
+                <div class="slideshow image">
                   <div class="expand"></div>
                 </div>
                 <div class="hr"></div>
@@ -98,7 +98,7 @@
           <div class="slideWrap">
             <a href="#">
               <div class="slide">
-                <div class="slideshowOne image">
+                <div class="slideshow image">
                   <div class="expand"></div>
                 </div>
                 <div class="hr"></div>
@@ -111,7 +111,7 @@
           <div class="slideWrap">
             <a href="#">
               <div class="slide">
-                <div class="slideshowOne image">
+                <div class="slideshow image">
                   <div class="expand"></div>
                 </div>
                 <div class="hr"></div>
@@ -124,7 +124,7 @@
           <div class="slideWrap">
             <a href="#">
               <div class="slide">
-                <div class="slideshowOne image">
+                <div class="slideshow image">
                   <div class="expand"></div>
                 </div>
                 <div class="hr"></div>
@@ -137,7 +137,7 @@
           <div class="slideWrap">
             <a href="#">
               <div class="slide">
-                <div class="slideshowOne image">
+                <div class="slideshow image">
                   <div class="expand"></div>
                 </div>
                 <div class="hr"></div>
@@ -148,19 +148,19 @@
             </a>
           </div>
         </div>
-        <div id="slideControlsOne" class="slidesFrame controls">
-          <div id="slideshowOneLeft" class="button invoker" ></div>
-          <div id="slideshowOneRight" class="button invoker" ></div>
+        <div id="slideControlsOne" class="slideshow controls">
+          <div id="slideshowOneLeft" data-slideshow_index="0" class="slideshow left button invoker" ></div>
+          <div id="slideshowOneRight" data-slideshow_index="0" class="slideshow right button invoker" ></div>
         </div>
-        <div id="slideDotMenuOne" class="dotMenu">
-          <span data-slide="0" class="active"></span>
-          <span data-slide="1"></span>
-          <span data-slide="2"></span>
-          <span data-slide="3"></span>
-          <span data-slide="4"></span>
-          <span data-slide="5"></span>
-          <span data-slide="6"></span>
-          <div id="blockMenuOne" class="blockMenu">
+        <div id="slideDotMenuOne" data-slideshow_index="0" class="slideshow menu">
+          <span data-slide="0" data-slideshow_index="0" class="active"></span>
+          <span data-slide="1" data-slideshow_index="0"></span>
+          <span data-slide="2" data-slideshow_index="0"></span>
+          <span data-slide="3" data-slideshow_index="0"></span>
+          <span data-slide="4" data-slideshow_index="0"></span>
+          <span data-slide="5" data-slideshow_index="0"></span>
+          <span data-slide="6" data-slideshow_index="0"></span>
+          <div id="blockMenuOne" data-slideshow_index="0" class="slideshow menuBlock">
             <div class="shield"></div>
           </div>
         </div>
@@ -307,7 +307,7 @@
     </div>
     <div class="wrapper7">
       <div class="header">
-        <div id="logo" class="logo">
+        <div class="logo">
           <a href="#"></a>
         </div>
         <div class="topLink">
@@ -444,13 +444,8 @@
   </body>
   <script type="text/javascript" src="js/slideshow.js"></script>
   <script type="text/javascript">
-    setOrder();
-    enableHandlers();
-    menuOneListeners();
-    positionButtons();
-
-    window.addEventListener('load', autoShow);
-    window.addEventListener('load', slideMouseEvent);
-
+    window.addEventListener('load', closure.prepare);
+    window.addEventListener('resize', closure.position);
+    window.addEventListener('load', closure.autoShowOnLoad);
   </script>
 </html>

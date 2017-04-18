@@ -1,9 +1,35 @@
 //-=-=-=-=-=-SLIDESHOW-=-=-=-=-=-=-
+var closure = testClosure();
+// Array that store Ids of all active intervals.
+// Initialy created for 3 possible slideshows on the page.
+  var intervals = [[],[],[]];
+// =====================================
+// ===========MAIN FUNCTION=============
+function testClosure() {
+// Identifies element which listener got activated
+  var invoker;
+// Index of slideshow
+  var index;
+// Element of image class. Equal in size to slide picture
+// and used to position buttons in the middle of slide height.
+  var image;
 // Slides wrapper
-  var frame = document.getElementById('slideshowOne');
-  frame.style.left = '0px';
-// Value of property 'left' of frame
-  var framePos; //aka frame position
+  var frame;
+// Left button
+  var leftButton;
+// Right button
+  var rightButton;
+// Dot menu
+  var dotMenu;
+// Element that can occlude dotMenu disabling
+// it temporarily
+  var blockMenu;
+// Array of slides
+  var slides;
+// Width of single slide relative to Frame width
+  var slideWidth;
+// Number of slides fitting on the screen
+  var inView;
 // Left slide
   var leftSlide;
 // Index of element in slides[] belonging
@@ -14,33 +40,9 @@
 // Index of element in slides[] belonging
 // to the rightSlide
   var rightSlideIndex;
-// Left button
-  var leftButton = document.getElementById('slideshowOneLeft');
-// Right button
-  var rightButton = document.getElementById('slideshowOneRight');
-// Dot menu
-  var dotMenu = document.getElementById('slideDotMenuOne').children;
-// Element that can occlude dotMenu disabling
-// it temporarily
-  var blockMenu = document.getElementById('blockMenuOne').children[0];
-// Array of slides
-  var slides = frame.children;
-// Width of single slide relative to Frame width
-  var slideWidth = Math.round(slides[0].offsetWidth);
-// Number of slides fitting on the screen
-  var inView = Math.round(window.innerWidth/slideWidth);
-// Id of newly created interval
-  var interId;
-// Array that store Ids of all active intervals
-  var intervals = [];
+// Array of cloned slides
+  var clones = [];
 // ==================================
-// Basic functions
-function setOrder() {
-  // Set slides order (used on page load)
-  for (var i = 0; i < slides.length; i++) {
-    slides[i].style.order = i;
-  }
-}
 function getLeft() {
   // Get left slide (visible, left-most slide)
   for (var i = 0; i < slides.length; i++) {
@@ -51,6 +53,7 @@ function getLeft() {
     }
   }
 }
+// ==================================
 function getRight() {
   // Get right slide (unvisible, right-most slide)
   var A = slides.length, B = clones.length;
@@ -62,16 +65,19 @@ function getRight() {
     }
   }
 }
+// ==================================
 function frameToLeft() {
   // Move flexbox frame left
-  framePos = parseFloat(frame.style.left);
+  var framePos = parseFloat(frame.style.left);
   frame.style.left = framePos - slideWidth + 'px';
 }
+// ==================================
 function frameToRight() {
   // Move flexbox frame right
-  framePos = parseFloat(frame.style.left);
+  var framePos = parseFloat(frame.style.left);
   frame.style.left = framePos + slideWidth + 'px';
 }
+// ==================================
 function allOrder1Down() {
   // Degrade order of all slides by 1
   for (var i = 0; i < slides.length; i++) {
@@ -80,6 +86,7 @@ function allOrder1Down() {
     slides[i].style.order = order;
   }
 }
+// ==================================
 function allOrder1Up() {
   // Bump order of all slides by 1
   var order;
@@ -89,12 +96,14 @@ function allOrder1Up() {
     slides[i].style.order = order;
   }
 }
+// ==================================
 function leftOrderMax() {
   // Bump order of left slide by slides number
   var order = parseInt(leftSlide.style.order);
   order += slides.length - clones.length;
   leftSlide.style.order = order;
 }
+// ==================================
 function rightOrderMin() {
   // Degrade order of right slide by slides number
   var order = parseInt(rightSlide.style.order);
@@ -102,7 +111,6 @@ function rightOrderMin() {
   rightSlide.style.order = order;
 }
 // ==================================
-var clones = [];
 function addClones(range) {
   if ((slides.length - range) < inView) {
     // copy adequate number of slides starting from
@@ -128,7 +136,8 @@ function removeClones() {
 function goLeft(invoker, range) {
   // Move by 1 to left
   suspendShow();
-  disableHandlers();
+  disableButtons();
+  disableSlideMouseEvent();
   var dir = -1;
   if (!range) range = 1;
   lightDot(range, dir);
@@ -147,15 +156,18 @@ function goLeft(invoker, range) {
     }
   },0)
   setTimeout( function(){
-    enableHandlers();
+    enableButtons();
+    slideMouseEvent();
     removeClones();
     autoShow();
   },600)
 }
+// ==================================
 function goRight(invoker, range) {
   // Move by 1 to right
   suspendShow();
-  disableHandlers();
+  disableButtons();
+  disableSlideMouseEvent();
   var dir = 1;
   if (!range) range = 1;
   lightDot(range, dir);
@@ -173,7 +185,8 @@ function goRight(invoker, range) {
       leftOrderMax();
     }
     removeClones();
-    enableHandlers();
+    enableButtons();
+    slideMouseEvent();
     autoShow();
   }, 600)
 }
@@ -198,71 +211,170 @@ function lightDot(range, dir) {
   }
 }
 // ==================================
-function disableHandlers() {
+function disableButtons() {
   // Disable event handlers
-  leftButton.removeEventListener('click', goLeft );
-  rightButton.removeEventListener('click', goRight );
+  leftButton.removeEventListener('click', closure.goLeft);
+  rightButton.removeEventListener('click', closure.goRight );
   blockMenu.style.zIndex = '1';
 }
 // ==================================
-function enableHandlers() {
+function enableButtons() {
   // Enable event handlers
-  leftButton.addEventListener('click', goLeft);
-  rightButton.addEventListener('click', goRight);
+  leftButton.addEventListener('click', closure.goLeft);
+  rightButton.addEventListener('click', closure.goRight);
   blockMenu.style.zIndex = '-1';
 }
 // ====================================
 function autoShow(duration) {
   // Create new interval and store its id in array
-  var cycleTime = 4;  //interval in s
-  if (intervals.length == 0) {
+  var cycleTime = 4;  //interval in
+  var interId; //interval Id
+  if (intervals[index].length == 0) {
     if (!Number(duration)) duration = 0;
     interId = setInterval (goRight, (cycleTime*1000 + duration*1000));
-    intervals.push(interId);
+    intervals[index].push(interId);
   }
 }
 // ================================================
 function suspendShow() {
   // Stop all intervals and clear array
-  for (var i = 0; i < intervals.length; i++) {
-    clearInterval(intervals[i]);
+  for (var i = 0; i < intervals[index].length; i++) {
+    clearInterval(intervals[index][i]);
   }
-  intervals.splice(0,intervals.length);
-}
-// ================================================
-function slideMouseEvent() {
-  // suspend slideshow when user hover ofer the slide
-  // and restart when mouse leaves slides
-  for (var i = 0; i < slides.length; i++) {
-    slides[i].addEventListener('mouseenter', suspendShow);
-    slides[i].addEventListener('mouseleave', autoShow);
-  }
-}
-// ================================================
-function menuOneListeners() {
-  // Add event listeners to dot menu elements
-  var dotMenu = document.getElementById('slideDotMenuOne').children;
-  for (var i = 0; i < dotMenu.length; i++) {
-    dotMenu[i].addEventListener('click', goSlide);
-  }
+  intervals[index].splice(0,intervals[index].length);
 }
 // ================================================
 function goSlide() {
   // get data-slide attribute value from invoker
   // and run function for left or right movement
-  var goToSlideIndex = this.dataset.slide;
+  // var goToSlideIndex = this.dataset.slide;
+  var goToSlideIndex = invoker.dataset.slide;
   getLeft();
   var diff = goToSlideIndex - leftSlideIndex;
-  if (diff < 0) goLeft( "", -diff)
-  else if(diff > 0) goRight( "", diff)
+  if (diff < 0) goLeft("", -diff)
+  else if(diff > 0) goRight("", diff)
+}
+// ==================================
+function setOrder() {
+  // Set slides order (used on page load)
+  for (var i = 0; i < slides.length; i++) {
+    slides[i].style.order = i;
+  }
+}
+// ================================================
+function enableDotMenu() {
+  // Add event listeners to dot menu elements
+  for (var i = 0; i < dotMenu.length; i++) {
+    dotMenu[i].addEventListener('click', closure.goSlide);
+  }
 }
 // ================================================
 function positionButtons() {
   // Modify buttons vertical position based on their size
   // and slides height so they always appear in the middle
   var buttonHeight = leftButton.offsetHeight;
-  var image = document.getElementsByClassName('slideshowOne image')[0];
   var imageHeight = image.offsetHeight;
   leftButton.style.top = (imageHeight - buttonHeight) * 0.5 + 'px';
   rightButton.style.top = (imageHeight - buttonHeight) * 0.5 + 'px';
+}
+// ================================================
+function slideMouseEvent() {
+  // suspend slideshow when user hover ofer the slide
+  // and restart when mouse leaves slides
+    frame.addEventListener('mouseenter', closure.suspendShow);
+    frame.addEventListener('mouseleave', closure.autoShow);
+}
+// ================================================
+function disableSlideMouseEvent() {
+    frame.removeEventListener('mouseenter', closure.suspendShow);
+    frame.removeEventListener('mouseleave', closure.autoShow);
+}
+// ================================================
+function prepare() {
+  // Acts on all slideshows on the page
+  var slideshows = document.querySelectorAll('.slideshowWrapper');
+  for (var i = 0; i < slideshows.length; i++) {
+    if (invoker === window){
+      leftButton = slideshows[i].querySelector('.left.button');
+      rightButton = slideshows[i].querySelector('.right.button');
+      image = slideshows[i].querySelector('.image');
+      positionButtons();
+      slides = slideshows[i].querySelectorAll('.slideWrap');
+      setOrder();
+      dotMenu = slideshows[i].querySelectorAll('.slideshow.menu span');
+      enableDotMenu();
+      frame = slideshows[i].children[0];
+      slideMouseEvent();
+      blockMenu = slideshows[i].querySelector('.menuBlock .shield');
+      enableButtons();
+    }
+    else {
+      leftButton = slideshows[i].querySelector('.left.button');
+      rightButton = slideshows[i].querySelector('.right.button');
+      image = slideshows[i].querySelector('.image');
+      positionButtons();
+      break;
+    }
+  }
+}
+// ================================================
+function variables() {
+  // function sets values of semi-global variables
+  // based on invoker value
+  index = invoker.dataset.slideshow_index;
+  var query = '[data-slideshow_index="' + index+'"]';
+  frame = document.querySelector(query);
+          frame.style.left = '0px';
+  leftButton = document.querySelector(query + '.left.button');
+  rightButton = document.querySelector(query + '.right.button');
+  dotMenu = document.querySelectorAll(query + '.menu span');
+  blockMenu = document.querySelector(query + '.menuBlock .shield');
+  slides = frame.children;
+  slideWidth = Math.round(slides[0].offsetWidth);
+  inView = Math.round(window.innerWidth/slideWidth);
+}
+// ================================================
+return {
+  prepare: function() {
+    invoker = this;
+    prepare();
+  },
+  position: function() {
+    invoker = '';
+    prepare();
+  },
+  goRight: function() {
+    invoker = this;
+    variables();
+    goRight();
+  },
+  goLeft: function() {
+    invoker = this;
+    variables();
+    goLeft();
+  },
+  goSlide: function() {
+    invoker = this;
+    variables();
+    goSlide();
+  },
+  autoShow: function() {
+    invoker = this;
+    variables();
+    autoShow();
+  },
+  autoShowOnLoad: function() {
+    var slideshows = document.getElementsByClassName('slidesFrame');
+    for (var i = 0; i < slideshows.length; i++) {
+      invoker = slideshows[i];
+      variables();
+      autoShow();
+    }
+  },
+  suspendShow: function() {
+    invoker = this;
+    variables();
+    suspendShow();
+  }
+}
 }
