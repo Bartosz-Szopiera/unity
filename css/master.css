@@ -142,7 +142,7 @@ div.wrapper2 div.slideshowWrapper {
   margin: 0px 25px;
 }
 /*#slideshowOne {*/
-#slideshowOne {
+.slidesFrame {
   /* NOTE: width controls number of slides
   on screen */
   width: 50%;
@@ -157,28 +157,28 @@ div.wrapper2 div.slideshowWrapper {
   left: 0px;
   transition: left 0.6s;
 }
-#slideshowOne div.slideWrap {
+.slidesFrame div.slideWrap {
   position: relative;
   box-sizing: border-box;
   flex: 0 0 auto;
   width: 100%;
   padding: 0px 15px;
 }
-#slideshowOne div.slide {
+.slidesFrame div.slide {
   width: 100%;
 }
-#slideshowOne div.image {
+.slidesFrame div.image {
   width: 100%;
   /* NOTE: Control minimal size of image */
   min-height: 150px;
   background: rgb(114, 138, 203);
 }
-#slideshowOne div.expand {
+.slidesFrame div.expand {
   width: 100%;
   /* NOTE: Control relative height of slide image */
   padding-bottom: 60%;
 }
-#slideshowOne div.hr {
+.slidesFrame div.hr {
   margin: auto;
   margin-top: 30px;
   margin-bottom: 20px;
@@ -186,12 +186,12 @@ div.wrapper2 div.slideshowWrapper {
   width: 25%;
   border-top: 1px solid grey;
 }
-#slideshowOne div.summary h3 {
+.slideshow.slidesFrame div.summary h3 {
   font-size: 2.5em;
   font-weight: normal;
   text-align: center;
 }
-#slideControlsOne {
+.slideshow.controls {
   height: 0px;
   width: 100%;
   display: flex;
@@ -201,7 +201,7 @@ div.wrapper2 div.slideshowWrapper {
   top: 0px;
   left: 0px;
 }
-#slideControlsOne div.button {
+.slideshow.controls div.button {
   box-sizing: border-box;
   width: 35px;
   height: 35px;
@@ -217,23 +217,23 @@ div.wrapper2 div.slideshowWrapper {
   z-index: 1;
   position: relative;
 }
-#slideshowOneLeft.button::before {
+.slideshow.left.button::before {
   content: '\e92a';
 }
-#slideshowOneRight.button::before {
+.slideshow.right.button::before {
   content: '\e92a';
 }
-#slideControlsOne div.button:hover {
+.slideshow.controls div.button:hover {
   cursor: pointer;
 }
 /*---Slideshow dots to navigate*/
-#slideDotMenuOne {
+.slideshow.menu {
   margin: auto;
   display: flex;
   justify-content: center;
   position: relative;
 }
-#slideDotMenuOne span {
+.slideshow.menu span {
   flex: 0 0 auto;
   box-sizing: border-box;
   display: block;
@@ -243,24 +243,24 @@ div.wrapper2 div.slideshowWrapper {
   border-radius: 50%;
   border: 1px solid rgba(139, 139, 139, 0.55);
 }
-#slideDotMenuOne span:hover {
+.slideshow.menu span:hover {
   border: 1px solid black;
   background: black;
   cursor: pointer;
 }
-#slideDotMenuOne span.active {
+.slideshow.menu span.active {
   border: 1px solid black;
   background: black;
 }
-#slideDotMenuOne span.active {
+.slideshow.menu span.active {
   border: 1px solid black;
   background: black;
 }
-#blockMenuOne {
+.slideshow.menuBlock {
   height: 0px;
   width: 0px;
 }
-#blockMenuOne div.shield {
+.slideshow.menuBlock div.shield {
   position: absolute;
   width: 100%;
   height: 100%;
