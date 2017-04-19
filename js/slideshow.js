@@ -141,7 +141,7 @@ function goLeft(invoker, range) {
   var dir = -1;
   if (!range) range = 1;
   lightDot(range, dir);
-  frame.style.transition = 'left 0s';
+  frame.style.transition = 'left 0.0s';
   for (var i = 0; i < range; i++) {
     frameToLeft();
     getRight();
@@ -149,18 +149,18 @@ function goLeft(invoker, range) {
     rightOrderMin();
   }
   addClones(range);
-  setTimeout(function(){
+  setTimeout(function() {
     frame.style.transition = 'left 0.6s';
     for (var i = 0; i < range; i++) {
       frameToRight(); //anim
     }
-  },0)
-  setTimeout( function(){
+  },20)
+  setTimeout(function() {
     enableButtons();
     slideMouseEvent();
     removeClones();
     autoShow();
-  },600)
+  },620)
 }
 // ==================================
 function goRight(invoker, range) {
@@ -364,10 +364,12 @@ return {
     autoShow();
   },
   autoShowOnLoad: function() {
+    // Starts autoShow on all slideshows on the page
     var slideshows = document.getElementsByClassName('slidesFrame');
     for (var i = 0; i < slideshows.length; i++) {
       invoker = slideshows[i];
       variables();
+      suspendShow();
       autoShow();
     }
   },
