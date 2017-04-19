@@ -136,7 +136,7 @@ div.wrapper2 {
   background: rgb(244, 248, 252);
   padding: 30px 0px;
 }
-div.wrapper2 div.slideshowWrapper {
+div.slideshowWrapper {
   position: relative;
   overflow: hidden;
   margin: 0px 25px;
@@ -163,6 +163,9 @@ div.wrapper2 div.slideshowWrapper {
   flex: 0 0 auto;
   width: 100%;
   padding: 0px 15px;
+}
+.slidesFrame div.slideWrap:hover {
+  cursor: pointer;
 }
 .slidesFrame div.slide {
   width: 100%;

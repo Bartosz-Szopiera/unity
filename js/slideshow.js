@@ -2,7 +2,7 @@
 var closure = testClosure();
 // Array that store Ids of all active intervals.
 // Initialy created for 3 possible slideshows on the page.
-  var intervals = [[],[],[]];
+  var intervals = [];
 // =====================================
 // ===========MAIN FUNCTION=============
 function testClosure() {
@@ -155,12 +155,13 @@ function goLeft(invoker, range) {
       frameToRight(); //anim
     }
   },20)
-  setTimeout(function() {
+  setTimeout(function(indexSaved) {
+    variables(indexSaved);
     enableButtons();
     slideMouseEvent();
     removeClones();
     autoShow();
-  },620)
+  },620, index)
 }
 // ==================================
 function goRight(invoker, range) {
@@ -176,7 +177,8 @@ function goRight(invoker, range) {
   for (var i = 0; i < range; i++) {
     frameToLeft(); //anim
   }
-  setTimeout(function(){
+  setTimeout(function(indexSaved) {
+    variables(indexSaved);
     frame.style.transition = 'left 0s';
     for (var i = 0; i < range; i++) {
       getLeft();
@@ -188,7 +190,7 @@ function goRight(invoker, range) {
     enableButtons();
     slideMouseEvent();
     autoShow();
-  }, 600)
+  }, 600, index)
 }
 // ==================================
 // Desactivates current leftSlide menu-dot
@@ -227,27 +229,30 @@ function enableButtons() {
 // ====================================
 function autoShow(duration) {
   // Create new interval and store its id in array
-  var cycleTime = 4;  //interval in
-  var interId; //interval Id
-  if (intervals[index].length == 0) {
-    if (!Number(duration)) duration = 0;
-    interId = setInterval (goRight, (cycleTime*1000 + duration*1000));
-    intervals[index].push(interId);
+  if(index == 0){
+    var cycleTime = 4;  //interval in
+    var interId; //interval Id
+    if (intervals.length == 0) {
+      if (!Number(duration)) duration = 0;
+      interId = setInterval (closure.goRightAuto, (cycleTime*1000 + duration*1000));
+      intervals.push(interId);
+    }
   }
 }
 // ================================================
 function suspendShow() {
   // Stop all intervals and clear array
-  for (var i = 0; i < intervals[index].length; i++) {
-    clearInterval(intervals[index][i]);
+  if(index == 0){
+    for (var i = 0; i < intervals.length; i++) {
+      clearInterval(intervals[i]);
+    }
+    intervals.splice(0,intervals.length);
   }
-  intervals[index].splice(0,intervals[index].length);
 }
 // ================================================
 function goSlide() {
   // get data-slide attribute value from invoker
   // and run function for left or right movement
-  // var goToSlideIndex = this.dataset.slide;
   var goToSlideIndex = invoker.dataset.slide;
   getLeft();
   var diff = goToSlideIndex - leftSlideIndex;
@@ -281,13 +286,17 @@ function positionButtons() {
 function slideMouseEvent() {
   // suspend slideshow when user hover ofer the slide
   // and restart when mouse leaves slides
+  if (index == 0) {
     frame.addEventListener('mouseenter', closure.suspendShow);
     frame.addEventListener('mouseleave', closure.autoShow);
+  }
 }
 // ================================================
 function disableSlideMouseEvent() {
+  if (index == 0) {
     frame.removeEventListener('mouseenter', closure.suspendShow);
     frame.removeEventListener('mouseleave', closure.autoShow);
+  }
 }
 // ================================================
 function prepare() {
@@ -318,13 +327,14 @@ function prepare() {
   }
 }
 // ================================================
-function variables() {
+function variables(indexSaved) {
   // function sets values of semi-global variables
   // based on invoker value
-  index = invoker.dataset.slideshow_index;
+  index = indexSaved;
+  if(!index) index = invoker.dataset.slideshow_index;
   var query = '[data-slideshow_index="' + index+'"]';
   frame = document.querySelector(query);
-          frame.style.left = '0px';
+    if(!frame.style.left) frame.style.left = '0px';
   leftButton = document.querySelector(query + '.left.button');
   rightButton = document.querySelector(query + '.right.button');
   dotMenu = document.querySelectorAll(query + '.menu span');
@@ -348,6 +358,11 @@ return {
     variables();
     goRight();
   },
+  goRightAuto: function() {
+    invoker = document.getElementsByClassName('slidesFrame')[0];
+    variables();
+    goRight();
+  },
   goLeft: function() {
     invoker = this;
     variables();
@@ -359,19 +374,9 @@ return {
     goSlide();
   },
   autoShow: function() {
-    invoker = this;
+    invoker = document.getElementsByClassName('slidesFrame')[0];
     variables();
     autoShow();
-  },
-  autoShowOnLoad: function() {
-    // Starts autoShow on all slideshows on the page
-    var slideshows = document.getElementsByClassName('slidesFrame');
-    for (var i = 0; i < slideshows.length; i++) {
-      invoker = slideshows[i];
-      variables();
-      suspendShow();
-      autoShow();
-    }
   },
   suspendShow: function() {
     invoker = this;
