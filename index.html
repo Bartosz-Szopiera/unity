@@ -55,6 +55,8 @@
     </div>
     <div class="wrapper2">
       <div class="slideshowWrapper">
+        <div class="obscuringFrame"></div>
+        <div class="obscuringFrame"></div>
         <div data-slideshow_index="0" class="slideshow slidesFrame">
           <div class="slideWrap">
             <a href="#">
@@ -216,6 +218,8 @@
         <h3>Discover the amazing games and projects made with Unity</h3>
       </div>
       <div class="slideshowWrapper">
+        <div class="obscuringFrame"></div>
+        <div class="obscuringFrame"></div>
         <div data-slideshow_index="1" class="slideshow slidesFrame">
           <div class="slideWrap">
             <a href="#">
@@ -470,13 +474,13 @@
               <form class="signUp" action="index.html" method="post">
                 <div class="email">
                   <input required type="text" name="email" value="" placeholder="Enter your email here.">
-                  <input type="submit" name="" value="Sign up">
+                  <input type="submit" name="" value="Sign up" class="submit">
                 </div>
                 <div class="privacyPolicy">
-                  <input required type="checkbox" name="" value="">
-                  <div class="statement">
-                    <p>I agree to the <a href="#">Unity Privacy Policy</a> and the processing and use of my information</p>
-                  </div>
+                  <input id="privacyPolicy" required type="checkbox" name="privacyPolicy" value="">
+                  <label for="privacyPolicy" class="statement">
+                      <p>I agree to the <a href="#">Unity Privacy Policy</a> and the processing and use of my information</p>
+                  </label>
                 </div>
               </form>
             </div>

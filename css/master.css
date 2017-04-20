@@ -135,13 +135,13 @@ div.wrapper1 div.getUnityLink {
 div.wrapper2 {
   background: rgb(244, 248, 252);
   padding: 30px 0px;
+  overflow: hidden;
 }
 div.slideshowWrapper {
   position: relative;
-  overflow: hidden;
   margin: 0px 25px;
+  /*overflow: hidden;*/
 }
-/*#slideshowOne {*/
 .slidesFrame {
   /* NOTE: width controls number of slides
   on screen */
@@ -156,6 +156,25 @@ div.slideshowWrapper {
   position: relative;
   left: 0px;
   transition: left 0.6s;
+}
+.obscuringFrame {
+  /*display: none;*/
+  position: absolute;
+  /* NOTE: width equal margin of outermost
+  container */
+  width: 25px;
+  height: 100%;
+  background: rgb(244, 248, 252);
+  z-index: 1;
+}
+.obscuringFrame {
+  left: 0px;
+  transform: translate(-100%, 0px);
+}
+.obscuringFrame+.obscuringFrame {
+  left: unset;
+  transform: translate(100%, 0px);
+  right: 0px;
 }
 .slidesFrame div.slideWrap {
   position: relative;
@@ -203,6 +222,7 @@ div.slideshowWrapper {
   overflow: visible;
   top: 0px;
   left: 0px;
+  z-index: 2;
 }
 .slideshow.controls div.button {
   box-sizing: border-box;
@@ -327,9 +347,28 @@ div.wrapper3 .offer .header h4 {
   margin: 0px;
 }
 /*============================*/
+/*second slideshow*/
 div.wrapper4 {
   background: rgb(244, 248, 252);
   padding: 30px 0px;
+  overflow: hidden;
+}
+div.wrapper4 div.slideshowWrapper {
+  margin: 0px 110px;
+}
+div.wrapper4 div.slideshow.image .expand {
+  padding-bottom: 55%;
+}
+div.wrapper4 .slideshow.left.button {
+  left: -5%;
+}
+div.wrapper4 .slideshow.right.button {
+  right: -5%;
+}
+div.wrapper4 .obscuringFrame {
+  /* NOTE: width equal margin of outermost
+  container */
+  width: 110px;
 }
 div.wrapper4 .header {
   text-align: center;
@@ -526,8 +565,60 @@ div.wrapper7>.body>.wrapper.newsletter.language {
 div.wrapper7>.body>.newsletter .header {
   width: 100%;
 }
+div.wrapper7>.body>.newsletter .email {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+div.wrapper7>.body>.newsletter .email>input {
+  box-sizing: border-box;
+  width: 65%;
+  overflow: hidden;
+  flex: 0 0 auto;
+  font-size: 1em;
+  height: 50px;
+  padding: 15px;
+  margin: 0px;
+}
+div.wrapper7>.body>.newsletter .email>input.submit {
+  width: 35%;
+  color: white;
+  text-align: center;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: rgb(61, 161, 92);
+  border: 1px solid rgb(61, 161, 92);
+}
+div.wrapper7>.body>.newsletter .privacyPolicy {
+  margin: 20px 0px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+}
+div.wrapper7>.body>.newsletter .privacyPolicy>input {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  margin: 0px;
+  margin-right: 10px;
+  background: white;
+  opacity: 1;
+}
+div.wrapper7>.body>.newsletter .privacyPolicy>input:hover {
+  cursor: pointer;
+}
+div.wrapper7>.body>.newsletter .privacyPolicy>.statement {
+  margin: 0px;
+  padding: 0px;
+}
+div.wrapper7>.body>.newsletter .privacyPolicy>.statement p {
+  padding: 0px;
+  margin: 0px;
+}
 /*--------Language--------*/
 div.wrapper7>.body>.wrapper>.language {
+  clear: both;
   max-height: 100px;
 }
 div.wrapper7>.body>.wrapper>.language .header {

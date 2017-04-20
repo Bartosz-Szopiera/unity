@@ -1,7 +1,6 @@
 //-=-=-=-=-=-SLIDESHOW-=-=-=-=-=-=-
 var closure = testClosure();
 // Array that store Ids of all active intervals.
-// Initialy created for 3 possible slideshows on the page.
   var intervals = [];
 // =====================================
 // ===========MAIN FUNCTION=============
@@ -312,17 +311,19 @@ function prepare() {
       setOrder();
       dotMenu = slideshows[i].querySelectorAll('.slideshow.menu span');
       enableDotMenu();
-      frame = slideshows[i].children[0];
+      frame = slideshows[i].querySelector('.slidesFrame');
       slideMouseEvent();
       blockMenu = slideshows[i].querySelector('.menuBlock .shield');
       enableButtons();
     }
     else {
+      frame = slideshows[i].querySelector('.slidesFrame');
+      if( parseInt(frame.style.left) != -slideWidth &&
+          parseInt(frame.style.left) != 0) frame.style.left = '0px';
       leftButton = slideshows[i].querySelector('.left.button');
       rightButton = slideshows[i].querySelector('.right.button');
       image = slideshows[i].querySelector('.image');
       positionButtons();
-      break;
     }
   }
 }
@@ -333,7 +334,7 @@ function variables(indexSaved) {
   index = indexSaved;
   if(!index) index = invoker.dataset.slideshow_index;
   var query = '[data-slideshow_index="' + index+'"]';
-  frame = document.querySelector(query);
+  frame = document.querySelector(query + '.slidesFrame');
     if(!frame.style.left) frame.style.left = '0px';
   leftButton = document.querySelector(query + '.left.button');
   rightButton = document.querySelector(query + '.right.button');
