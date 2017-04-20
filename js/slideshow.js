@@ -77,6 +77,10 @@ function frameToRight() {
   frame.style.left = framePos + slideWidth + 'px';
 }
 // ==================================
+function basePosition() {
+  frame.style.left = '0px';
+}
+// ==================================
 function allOrder1Down() {
   // Degrade order of all slides by 1
   for (var i = 0; i < slides.length; i++) {
@@ -159,8 +163,10 @@ function goLeft(invoker, range) {
     enableButtons();
     slideMouseEvent();
     removeClones();
+    basePosition();
     autoShow();
   },620, index)
+  // basePosition();
 }
 // ==================================
 function goRight(invoker, range) {
@@ -188,6 +194,7 @@ function goRight(invoker, range) {
     removeClones();
     enableButtons();
     slideMouseEvent();
+    basePosition();
     autoShow();
   }, 600, index)
 }

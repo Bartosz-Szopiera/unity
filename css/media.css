@@ -1,6 +1,16 @@
-/*==Screen height < 624px = 39em */
+/*Height < 624px = 39em */
 @media (min-height:39em){
   div.wrapper1 div.body {
     height: 600px;
+  }
+}
+
+/*Width < 1024px = 64em */
+@media (max-width: 64em) {
+  div.wrapper1 div.menu ul {
+    display: none;
+  }
+  div.wrapper1 .menu.right>div.button.mobileMenu {
+    display: unset;
   }
 }

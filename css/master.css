@@ -1,8 +1,6 @@
 /*====Font & Text=====*/
 
 
-
-
 /*=====Standard elements====*/
 .logo {
   width: 40px;
@@ -45,11 +43,73 @@ a:link, a:visited, a:hover, a:active {
 }
 /*=====================*/
 div.wrapper1 {
-  /*height: 100vh;*/
   width: 100%;
   background: rgb(52, 102, 168);
 }
-div.wrapper1 div.header {
+div.wrapper1>.panel {
+  box-sizing: content-box;
+  padding-top: 80px;
+  z-index: 4;
+  font-size: 2.2em;
+  line-height: 2.2em;
+  position: fixed;
+  right: 0px;
+  transform: translate(100%,0px);
+  width: 512px;
+  min-height: 100vh;
+  background: white content-box;
+  transition: transform 0.4s;
+}
+div.wrapper1>.dimScreen {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+  background: black;
+  opacity: 0.05;
+  transition: opacity 0.4s;
+}
+div.wrapper1>.mobileMenu.show {
+  transform: translate(0%,0px);
+}
+div.wrapper1>.searchTool.show {
+  transform: translate(0%,0px);
+}
+div.wrapper1>.profile.show {
+  transform: translate(0%,0px);
+}
+div.wrapper1>.show ~ .dimScreen {
+  z-index: 3;
+  opacity: 0.25;
+}
+div.wrapper1>.mobileMenu>ul{
+  padding: 0px;
+  padding-bottom: 15px;
+  margin: 30px;
+  list-style: none;
+  border-bottom: 1px solid rgba(236, 236, 236, 0.84);
+}
+div.wrapper1>.mobileMenu .header {
+  margin: 30px;
+}
+div.wrapper1>.mobileMenu>.language>ul {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  height: 150px;
+  padding: 0px;
+  list-style: none;
+}
+div.wrapper1>.mobileMenu>.language>ul>li {
+  padding: 0px;
+  margin: 0px;
+  width: 33%;
+}
+div.wrapper1>div.header {
   position: absolute;
   box-sizing: border-box;
   margin: auto;
@@ -71,24 +131,40 @@ div.wrapper1 div.menu li {
   display: inline;
 }
 div.wrapper1 div.menu.left {
+  z-index: 4;
   display: flex;
   align-items: center;
 }
 div.wrapper1 div.menu.right {
+  z-index: 4;
   display: flex;
   align-items: center;
 }
-div.wrapper1 div.searchTool {
+div.wrapper1 div.menu ul {
+  display: unset;
+}
+div.wrapper1 .menu.right>div.button.mobileMenu {
+  display: none;
   width: 40px;
   height: 40px;
-  padding: 10px;
+  margin: 10px;
+  background: rgb(22, 83, 128);
+  background-clip: content-box;
+}
+div.wrapper1 .menu.right>div.button:hover {
+  cursor: pointer;
+}
+div.wrapper1 div.button.searchTool {
+  width: 40px;
+  height: 40px;
+  margin: 10px;
   background: rgb(12, 59, 93);
   background-clip: content-box;
 }
-div.wrapper1 div.profile {
+div.wrapper1 div.button.profile {
   width: 40px;
   height: 40px;
-  padding: 10px;
+  margin: 10px;
   background: rgb(12, 59, 93);
   background-clip: content-box;
 }
@@ -125,7 +201,6 @@ div.wrapper1 div.links {
   display: flex;
   justify-content: center;
 }
-
 div.wrapper1 div.learnMoreLink {
   background: rgb(65, 65, 65);
 }
@@ -320,7 +395,7 @@ div.wrapper3 .offer {
 }
 div.wrapper3 .offer>div {
   box-sizing: border-box;
-  max-width: 25%;
+  max-width: 20%;
   flex-grow: 1;
   position: relative;
 }
@@ -328,20 +403,27 @@ div.wrapper3 .offer>div+div {
   box-shadow: -1px 0px 0px 0px #ccc;
 }
 div.wrapper3 .offer .image {
-  padding-bottom: 100%;
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  margin: auto;
+  left: 20%;
   box-sizing: border-box;
-  background-origin: top center;
-  /*background-clip: content-box;*/
-  width: 100%;
+  background: rgb(39, 167, 161);
 }
 div.wrapper3 .offer .header {
   box-sizing: border-box;
   width: 100%;
-  padding: 15px 20px;
-  position: absolute;
+  overflow: visible;
+  padding-top: 100%;
   bottom: 0px;
+  position: relative;
 }
 div.wrapper3 .offer .header h4 {
+  position: absolute;
+  left: 0px;
+  bottom: 10px;
+  width: 100%;
   font-size: 2em;
   padding: 0px;
   margin: 0px;
@@ -534,7 +616,7 @@ div.wrapper7>.header .topLink a {
 div.wrapper7>.body.sitemap.newsletter.language {
   box-sizing: border-box;
   width: 100%;
-  height: 300px;
+  height: 320px;
   display: flex;
   flex-wrap: nowrap;
 }
@@ -619,12 +701,10 @@ div.wrapper7>.body>.newsletter .privacyPolicy>.statement p {
 /*--------Language--------*/
 div.wrapper7>.body>.wrapper>.language {
   clear: both;
-  max-height: 100px;
+  max-height: 150px;
+  /*overflow: hidden;*/
 }
-div.wrapper7>.body>.wrapper>.language .header {
-  width: 100%;
-}
-div.wrapper7>.body>.wrapper>.language ul {
+div.wrapper7>.body>.wrapper>.language>ul.language {
   max-height: 80px;
   margin: auto;
   display: flex;
@@ -634,6 +714,7 @@ div.wrapper7>.body>.wrapper>.language ul {
 }
 div.wrapper7>.body>.wrapper>.language li {
   list-style: none;
+  width: 33%;
   padding: 0px 10px;
 }
 /*--------Partners--------*/

@@ -11,6 +11,38 @@
   </head>
   <body>
     <div class="wrapper1">
+      <nav class="panel mobileMenu">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Unity</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Made with Unity</a></li>
+          <li><a href="#">Learn</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="#">Get Unity</a></li>
+          <li><a href="#">Asset Store</a></li>
+        </ul>
+        <div class="language">
+          <div class="header"><h3>Language</h3></div>
+          <ul class="language">
+            <li class="chinese"><a href="#">中文</a></li>
+            <li class="japanese"><a href="#">日本語</a></li>
+            <li class="russian"><a href="#">Русский</a></li>
+            <li class="french"><a href="#">Français</a></li>
+            <li class="korean"><a href="#">한국어</a></li>
+            <li class="spanish"><a href="#">Español</a></li>
+            <li class="german"><a href="#">Deutch</a></li>
+            <li class="portuguese"><a href="#">Português</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="panel searchTool">
+
+      </div>
+      <div class="panel profile">
+
+      </div>
+      <div class="dimScreen"></div>
       <div class="header">
         <div class="menu left">
           <div class="logo">
@@ -29,8 +61,9 @@
             <li><a href="#">Get Unity</a></li>
             <li><a href="#">Asset Store</a></li>
           </ul>
-          <div class="profile"></div>
-          <div class="searchTool"></div>
+          <div data-target="panel mobileMenu" class="button mobileMenu"></div>
+          <div data-target="panel searchTool" class="button searchTool"></div>
+          <div data-target="panel profile" class="button profile"></div>
         </div>
       </div>
       <div class="body">
@@ -544,9 +577,49 @@
   </body>
   <script type="text/javascript" src="js/slideshow.js"></script>
   <script type="text/javascript">
+    // Event listeners-------------------------------
     window.addEventListener('load', closure.prepare);
     window.addEventListener('resize', closure.position);
     window.addEventListener('load', closure.autoShow);
-    window.addEventListener('resize', closure.autoShow);
+    // window.addEventListener('resize', closure.autoShow);
+    window.addEventListener('load', panel);
+    window.addEventListener('resize', panel);
+    // End: Event listeners-------------------------
+
+    function panel() {
+      var el, el1, query; //generic element identifier
+      if (this == window) {
+        // attach this function as 'click' handler
+        // on buttons
+        el = document.querySelectorAll('.button');
+        for (var i = 0; i < el.length; i++) {
+          el[i].addEventListener('click', panel);
+        }
+        // remove 'show' class
+        el = document.querySelectorAll('.panel');
+        for (var i = 0; i < el.length; i++) {
+          el[i].classList.remove('show')
+        }
+      }
+      else {
+        query = this.dataset.target;
+        el = document.getElementsByClassName(query)[0];
+        el.classList.toggle('show');
+        el1 = document.querySelectorAll('.panel');
+        for (var i = 0; i < el1.length; i++) {
+          if (el1[i]!=el) {
+            el1[i].classList.remove('show')
+          }
+        }
+        // Prevent scrolling of the document
+        // Through html{overflow:hidden}
+        if (el.classList.contains('show')) {
+          document.documentElement.style.overflow = 'hidden';
+        }
+        else {
+          document.documentElement.style.overflow = 'visible';
+        }
+      }
+    }
   </script>
 </html>
