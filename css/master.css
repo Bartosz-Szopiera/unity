@@ -1,6 +1,29 @@
 /*====Font & Text=====*/
 
 
+
+/*====Page wide=====*/
+body {
+  background: red;
+  font-size: 0.625em;
+  margin: 0px;
+  padding: 0px;
+}
+a:link, a:visited, a:hover, a:active {
+  color: inherit;
+  text-decoration: none;
+}
+section {
+  box-sizing: content-box;
+  width: 90%;
+  max-width: 1366px;
+  margin: 0px auto;
+  overflow: hidden;
+}
+section>*{
+  max-width: 100%;
+}
+
 /*=====Standard elements====*/
 .logo {
   width: 40px;
@@ -31,50 +54,65 @@
   display: block;
 }
 /*=====================*/
-body {
-  background: white;
-  font-size: 0.625em;
-  margin: 0px;
-  padding: 0px;
-}
-a:link, a:visited, a:hover, a:active {
-  color: inherit;
-  text-decoration: none;
-}
-/*=====================*/
-div.wrapper1 {
+.wrapper1 {
   width: 100%;
   background: rgb(52, 102, 168);
 }
-div.wrapper1>.panel {
+.wrapper1>section {
+  position: relative;
+  height: 100vh;
+  overflow: visible;
+}
+.wrapper1>section>.wrapper-100vh {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+.wrapper1>section>.wrapper-100vh>.panelWrapper {
+  flex: 1 0 auto;
+  position: relative;
+  width: 98vw;
+  overflow: hidden;
+}
+.wrapper1>section>.wrapper-100vh>.panelWrapper.show {
+  width: 100vw;
+}
+.wrapper1>section>.wrapper-100vh .panel {
   box-sizing: border-box;
   padding: 30px;
   z-index: 4;
   font-size: 1em;
   line-height: 2.2em;
-  position: fixed;
+  position: absolute;
   right: 0px;
-  top: 80px;
+  /*top: 80px;*/
+  top: 0px;
   transform: translate(100%,0px);
   width: 600px;
-  min-height: 100vh;
+  /*width: 60%;*/
+  height: 100%;
+  overflow-y: scroll;
   background: rgb(245, 248, 249);
   transition: transform 0.2s;
 }
-div.wrapper1>.panel.mobileMenu{
+.wrapper1>section>.wrapper-100vh .panel.mobileMenu{
   font-size: 2em;
 }
-div.wrapper1>.panel.mobileMenu>ul{
+.wrapper1>section>.wrapper-100vh .panel.mobileMenu>ul{
   padding: 0px;
   padding-bottom: 15px;
   margin: 30px;
   list-style: none;
   border-bottom: 1px solid rgba(236, 236, 236, 0.84);
 }
-div.wrapper1>.panel.mobileMenu .header {
+.wrapper1>section>.wrapper-100vh .panel.mobileMenu .header {
   margin: 30px;
 }
-div.wrapper1>.panel.mobileMenu>.language>ul {
+.wrapper1>section>.wrapper-100vh .panel.mobileMenu>.language>ul {
   margin: 30px;
   display: flex;
   flex-direction: column;
@@ -84,22 +122,25 @@ div.wrapper1>.panel.mobileMenu>.language>ul {
   padding: 0px;
   list-style: none;
 }
-div.wrapper1>.panel.mobileMenu>.language>ul>li {
+.wrapper1>section>.wrapper-100vh .panel.mobileMenu>.language>ul>li {
   padding: 0px;
   margin: 0px;
   width: 33%;
 }
-div.wrapper1>.panel.searchTool h3 {
+.wrapper1>section>.wrapper-100vh .panel.searchTool {
+  height: 100%;
+}
+.wrapper1>section>.wrapper-100vh .panel.searchTool h3 {
   font-size: 2.5em;
   margin: 0px;
   padding: 0px 0px;
 }
-div.wrapper1>.panel.searchTool>form {
+.wrapper1>section>.wrapper-100vh .panel.searchTool>form {
   display: flex;
   justify-content: flex-start;
   padding: 10px 0px;
 }
-div.wrapper1>.panel.searchTool>form input {
+.wrapper1>section>.wrapper-100vh .panel.searchTool>form input {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -109,7 +150,7 @@ div.wrapper1>.panel.searchTool>form input {
   padding: 0px;
   height: 45px;
 }
-div.wrapper1>.panel.searchTool>form>.text {
+.wrapper1>section>.wrapper-100vh .panel.searchTool>form>.text {
   padding-left: 20px;
   font-size: 2em;
   background: white;
@@ -117,57 +158,57 @@ div.wrapper1>.panel.searchTool>form>.text {
   width: 100%;
   border: 1px solid rgb(227, 227, 227);
 }
-div.wrapper1>.panel.searchTool>form>.text:focus {
+.wrapper1>section>.wrapper-100vh .panel.searchTool>form>.text:focus {
   outline: none;
   border: 1px solid rgb(180, 180, 180);
 }
-div.wrapper1>.panel.searchTool>form>.text:hover {
+.wrapper1>section>.wrapper-100vh .panel.searchTool>form>.text:hover {
   border: 1px solid rgb(180, 180, 180);
 }
-div.wrapper1>.panel.searchTool>form>.submit {
+.wrapper1>section>.wrapper-100vh .panel.searchTool>form>.submit {
   height: 50px;
   width: 50px;
   background: black;
 }
-div.wrapper1>.panel.searchTool>form>.submit:hover {
+.wrapper1>section>.wrapper-100vh .panel.searchTool>form>.submit:hover {
   cursor: pointer;
 }
-div.wrapper1>.panel.profile {
+.wrapper1>section>.wrapper-100vh .panel.profile {
   text-align: center;
 }
-div.wrapper1>.panel.profile>.header>.avatar {
+.wrapper1>section>.wrapper-100vh .panel.profile>.header>.avatar {
   margin: auto;
   height: 100px;
   width: 100px;
   border-radius: 50%;
   background: black;
 }
-div.wrapper1>.panel.profile>.header>h2 {
+.wrapper1>section>.wrapper-100vh .panel.profile>.header>h2 {
   font-size: 4em;
   padding: 0px;
   margin: 20px 0px;
 }
-div.wrapper1>.panel.profile>p {
+.wrapper1>section>.wrapper-100vh .panel.profile>p {
   font-size: 2em;
   margin: 20px 0px;
   line-height: 1.5em;
 }
-div.wrapper1>.panel.profile>.buttons {
+.wrapper1>section>.wrapper-100vh .panel.profile>.buttons {
   display: flex;
   justify-content: center;
 }
-div.wrapper1>.panel.profile>.buttons>.login {
+.wrapper1>section>.wrapper-100vh .panel.profile>.buttons>.login {
   background: #8ac249;
 }
-div.wrapper1>.panel.profile>.buttons>.login:hover {
+.wrapper1>section>.wrapper-100vh .panel.profile>.buttons>.login:hover {
   background: #9bcb64;
 }
-div.wrapper1>.panel.profile>.buttons>.createid {
+.wrapper1>section>.wrapper-100vh .panel.profile>.buttons>.createid {
   background: transparent;
   color: rgb(159, 159, 159);
   border: 1px solid grey;
 }
-div.wrapper1>.dimScreen {
+.wrapper1>section>.wrapper-100vh .dimScreen {
   position: fixed;
   left: 0px;
   top: 0px;
@@ -178,58 +219,56 @@ div.wrapper1>.dimScreen {
   opacity: 0.05;
   transition: opacity 0.3s;
 }
-div.wrapper1>.dimScreen:hover {
+.wrapper1>section>.wrapper-100vh .dimScreen:hover {
   cursor: pointer;
 }
-div.wrapper1>.mobileMenu.show {
-  transform: translate(0%,0px);
-}
-div.wrapper1>.searchTool.show {
-  transform: translate(0%,0px);
-}
-div.wrapper1>.profile.show {
-  transform: translate(0%,0px);
-}
-div.wrapper1>.show ~ .dimScreen {
+.wrapper1>section>.wrapper-100vh .show ~ .dimScreen {
   z-index: 3;
   opacity: 0.25;
 }
-div.wrapper1>div.header {
+.wrapper1>section>.wrapper-100vh .mobileMenu.show {
+  transform: translate(0%,0px);
+}
+.wrapper1>section>.wrapper-100vh .searchTool.show {
+  transform: translate(0%,0px);
+}
+.wrapper1>section>.wrapper-100vh .profile.show {
+  transform: translate(0%,0px);
+}
+.wrapper1>section>.wrapper-100vh>.header {
   z-index: 4;
-  position: absolute;
   box-sizing: border-box;
-  margin: auto;
+  margin: 0px auto;
   font-size: 1.8em;
-  padding: 0px 5%;
   height: 80px;
-  width: 100%;
+  min-width: 100%;
   display: flex;
   justify-content: space-between;
 }
-div.wrapper1 div.header ul {
+.wrapper1 div.header ul {
   padding: 0px;
   margin: 0px;
 }
-div.wrapper1 div.header li {
+.wrapper1 div.header li {
   padding: 0px 6px;
 }
-div.wrapper1 div.menu li {
+.wrapper1 div.menu li {
   display: inline;
 }
-div.wrapper1 div.menu.left {
+.wrapper1 div.menu.left {
   z-index: 4;
   display: flex;
   align-items: center;
 }
-div.wrapper1 div.menu.right {
+.wrapper1 div.menu.right {
   z-index: 4;
   display: flex;
   align-items: center;
 }
-div.wrapper1 div.menu ul {
+.wrapper1 div.menu ul {
   display: unset;
 }
-div.wrapper1 .menu.right>div.button.mobileMenu {
+.wrapper1 .menu.right>div.button.mobileMenu {
   display: none;
   width: 40px;
   height: 40px;
@@ -237,45 +276,45 @@ div.wrapper1 .menu.right>div.button.mobileMenu {
   background: rgb(22, 83, 128);
   background-clip: content-box;
 }
-div.wrapper1 .menu.right>div.button:hover {
+.wrapper1 .menu.right>div.button:hover {
   cursor: pointer;
 }
-div.wrapper1 div.button.searchTool {
+.wrapper1 div.button.searchTool {
   width: 40px;
   height: 40px;
   margin: 10px;
   background: rgb(12, 59, 93);
   background-clip: content-box;
 }
-div.wrapper1 div.button.profile {
+.wrapper1 div.button.profile {
   width: 40px;
   height: 40px;
   margin: 10px;
   background: rgb(12, 59, 93);
   background-clip: content-box;
 }
-div.wrapper1 div.body {
+.wrapper1 div.body {
   height: 110vh;
   display: flex;
   text-align: center;
   flex-wrap: wrap;
   align-content: center;
 }
-div.wrapper1 div.body>div {
+.wrapper1 div.body>div {
   width: 100%;
 }
-div.wrapper1 div.headerSmall h2 {
+.wrapper1 div.headerSmall h2 {
   font-size: 4.0em;
   color: rgb(210, 224, 44);
   padding: 0px;
   margin: auto;
 }
-div.wrapper1 div.headerBig h1 {
+.wrapper1 div.headerBig h1 {
   font-size: 10.0em;
   color: rgb(242, 242, 242);
   margin: auto;
 }
-div.wrapper1 div.summary h3 {
+.wrapper1 div.summary h3 {
   width: 70%;
   padding: 20px 0px;
   line-height: 1.5em;
@@ -283,24 +322,23 @@ div.wrapper1 div.summary h3 {
   color: rgb(242, 242, 242);
   margin: auto;
 }
-div.wrapper1 div.links {
+.wrapper1 div.links {
   display: flex;
   justify-content: center;
 }
-div.wrapper1 div.learnMoreLink {
+.wrapper1 div.learnMoreLink {
   background: rgb(65, 65, 65);
 }
-div.wrapper1 div.getUnityLink {
+.wrapper1 div.getUnityLink {
 }
 /*=====================*/
-div.wrapper2 {
+.wrapper2 {
   background: rgb(244, 248, 252);
-  padding: 30px 0px;
-  overflow: hidden;
 }
 div.slideshowWrapper {
   position: relative;
   margin: 0px 25px;
+  /*padding: 0px 25px;*/
   /*overflow: hidden;*/
 }
 .slidesFrame {
@@ -323,19 +361,19 @@ div.slideshowWrapper {
   position: absolute;
   /* NOTE: width equal margin of outermost
   container */
-  width: 25px;
+  width: 30px;
   height: 100%;
   background: rgb(244, 248, 252);
   z-index: 1;
 }
 .obscuringFrame {
-  left: 0px;
+  left: -5px;
   transform: translate(-100%, 0px);
 }
 .obscuringFrame+.obscuringFrame {
   left: unset;
   transform: translate(100%, 0px);
-  right: 0px;
+  right: -5px;
 }
 .slidesFrame div.slideWrap {
   position: relative;
@@ -454,24 +492,23 @@ div.slideshowWrapper {
   z-index: -1;
 }
 /*=========================*/
-div.wrapper3 {
+.wrapper3 {
   text-align: center;
-  padding: 25px 0px;
   background: rgb(253, 253, 253);
 }
-div.wrapper3 .header h2 {
+.wrapper3 .header h2 {
   font-size: 5em;
   padding: 0px 0px;
   margin: 0px;
 }
-div.wrapper3 .text {
+.wrapper3 .text {
   width: 95%;
   margin: auto;
 }
-div.wrapper3 .text h3 {
+.wrapper3 .text h3 {
   font-size: 2em;
 }
-div.wrapper3 .offer {
+.wrapper3 .offer {
   padding: 15px 0px;
   margin: auto;
   width: 90%;
@@ -479,16 +516,16 @@ div.wrapper3 .offer {
   justify-content: space-around;
   flex-wrap: nowrap;
 }
-div.wrapper3 .offer>div {
+.wrapper3 .offer>div {
   box-sizing: border-box;
   max-width: 20%;
   flex-grow: 1;
   position: relative;
 }
-div.wrapper3 .offer>div+div {
+.wrapper3 .offer>div+div {
   box-shadow: -1px 0px 0px 0px #ccc;
 }
-div.wrapper3 .offer .image {
+.wrapper3 .offer .image {
   position: absolute;
   width: 60%;
   height: 60%;
@@ -497,7 +534,7 @@ div.wrapper3 .offer .image {
   box-sizing: border-box;
   background: rgb(39, 167, 161);
 }
-div.wrapper3 .offer .header {
+.wrapper3 .offer .header {
   box-sizing: border-box;
   width: 100%;
   overflow: visible;
@@ -505,7 +542,7 @@ div.wrapper3 .offer .header {
   bottom: 0px;
   position: relative;
 }
-div.wrapper3 .offer .header h4 {
+.wrapper3 .offer .header h4 {
   position: absolute;
   left: 0px;
   bottom: 10px;
@@ -516,61 +553,60 @@ div.wrapper3 .offer .header h4 {
 }
 /*============================*/
 /*second slideshow*/
-div.wrapper4 {
+.wrapper4 {
   background: rgb(244, 248, 252);
-  padding: 30px 0px;
-  overflow: hidden;
 }
-div.wrapper4 div.slideshowWrapper {
+.wrapper4 div.slideshowWrapper {
   margin: 0px 110px;
 }
-div.wrapper4 div.slideshow.image .expand {
+.wrapper4 div.slideshow.image .expand {
   padding-bottom: 55%;
 }
-div.wrapper4 .slideshow.left.button {
+.wrapper4 .slideshow.left.button {
   left: -5%;
 }
-div.wrapper4 .slideshow.right.button {
+.wrapper4 .slideshow.right.button {
   right: -5%;
 }
-div.wrapper4 .obscuringFrame {
+.wrapper4 .obscuringFrame {
   /* NOTE: width equal margin of outermost
   container */
   width: 110px;
 }
-div.wrapper4 .header {
+.wrapper4 .header {
   text-align: center;
 }
-div.wrapper4 .header h2 {
+.wrapper4 .header h2 {
   font-size: 5em;
   margin: 0px;
 }
-div.wrapper4 .tagline {
+.wrapper4 .tagline {
   text-align: center;
 }
-div.wrapper4 .tagline h3 {
+.wrapper4 .tagline h3 {
   font-size: 2.5em;
   margin: 0px;
   padding: 15px;
 }
-div.wrapper4 .allGamesLink {
+.wrapper4 .allGamesLink {
   width: 160px;
   margin: 20px auto;
 }
 /*====================*/
-div.wrapper5 {
-  width: 95%;
-  margin: auto;
+.wrapper5 {
   background: rgb(253, 253, 253);
 }
-div.wrapper5 .showcase {
+.wrapper5 {
+
+}
+.wrapper5 .showcase {
   margin: auto;
   width: 100%;
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
 }
-div.wrapper5 .showcase>div {
+.wrapper5 .showcase>div {
   box-sizing: border-box;
   width: 50%;
   padding: 15px;
@@ -578,16 +614,16 @@ div.wrapper5 .showcase>div {
   flex-direction: column;
   align-content: flex-start;
 }
-div.wrapper5 .showcase>div .header {
+.wrapper5 .showcase>div .header {
   flex: 0 0 auto;
 }
-div.wrapper5 .showcase>div .header h2 {
+.wrapper5 .showcase>div .header h2 {
   font-size: 3em;
 }
-div.wrapper5 .showcase>div>div+div {
+.wrapper5 .showcase>div>div+div {
   box-shadow: 0px -1px 0px 0px #ccc;
 }
-div.wrapper5 .showcase>div>div {
+.wrapper5 .showcase>div>div {
   box-sizing: border-box;
   max-width: 100%;
   width: 100%;
@@ -596,13 +632,13 @@ div.wrapper5 .showcase>div>div {
   justify-content: flex-start;
   align-items: center;
 }
-div.wrapper5 .showcase .body {
+.wrapper5 .showcase .body {
   flex: 99 0 auto;
 }
-div.wrapper5 .showcase .footer {
+.wrapper5 .showcase .footer {
   align-self: flex-end;
 }
-div.wrapper5 .blog .post .image {
+.wrapper5 .blog .post .image {
   background: lightgreen;
   flex: 0 0 auto;
   width: 100px;
@@ -610,12 +646,12 @@ div.wrapper5 .blog .post .image {
   margin: 15px;
   margin-left: 0px;
 }
-div.wrapper5 .blog .post .description {
+.wrapper5 .blog .post .description {
   margin-left: 15px;
   flex: 1 1 auto;
   width: 300px;
 }
-div.wrapper5 .blog .post .description h3 {
+.wrapper5 .blog .post .description h3 {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -623,122 +659,127 @@ div.wrapper5 .blog .post .description h3 {
   margin: 0px;
   font-size: 2em;
 }
-div.wrapper5 .showcase>div .linkWrapper {
+.wrapper5 .showcase>div .linkWrapper {
   padding: 5px;
   padding-left: 0px;
   flex: 0 0 auto;
   align-self: flex-end;
 }
-div.wrapper5 .showcase>div .linkWrapper * {
+.wrapper5 .showcase>div .linkWrapper * {
   margin-left: 0px;
 }
-div.wrapper5 .showcase .video {
+.wrapper5 .showcase .video {
   background: #333;
   text-align: center;
   padding-top: 20px;
   margin-bottom: 20px;
 }
-div.wrapper5 .showcase .video * {
+.wrapper5 .showcase .video * {
   margin: auto;
   color: white;
 }
-div.wrapper5 .showcase .video .timestamp p {
+.wrapper5 .showcase .video .timestamp p {
   font-size: 2em;
 }
-div.wrapper5 .showcase .video .title h3 {
+.wrapper5 .showcase .video .title h3 {
   font-size: 4em;
 }
-div.wrapper5 .showcase .video .location p {
+.wrapper5 .showcase .video .location p {
   font-size: 2.5em;
 }
 /*============================*/
-div.wrapper6 .weAreHiring {
+.wrapper6 {
   background: #aaa;
+}
+.wrapper6 .weAreHiring {
   color: white;
   text-align: center;
   padding: 80px 0px;
 }
-div.wrapper6 .header {
+.wrapper6 .header {
   margin: auto;
 }
-div.wrapper6 .header h2 {
+.wrapper6 .header h2 {
   padding: 0px;
   margin: 0px;
   font-size: 5em;
 }
-div.wrapper6 .tagline {
+.wrapper6 .tagline {
   margin: auto;
   width: 80%;
   font-size: 2em;
 }
-div.wrapper6 .linkWrapper {
+.wrapper6 .linkWrapper {
   display: flex;
   justify-content: center;
 }
 /*======================*/
-div.wrapper7 {
-  padding: 0px 5%;
+.wrapper7 {
+  background: rgb(253, 253, 253);
+}
+.wrapper7>section {
   font-size: 1.5em;
   line-height: 1.5em;
 }
-div.wrapper7>.header {
+.wrapper7>section>.header {
   padding: 30px 0px;
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-div.wrapper7>.header .topLink {
+.wrapper7>section>.header .topLink {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   background: rgb(12, 59, 93);
   overflow: hidden;
 }
-div.wrapper7>.header .topLink a {
+.wrapper7>section>.header .topLink a {
   display: block;
   width: 100%;
   height: 100%;
 }
-div.wrapper7>.body.sitemap.newsletter.language {
+.wrapper7>section>.body.sitemap.newsletter.language {
   box-sizing: border-box;
   width: 100%;
-  height: 320px;
+  /*height: 320px;*/
+  height: 400px;
   display: flex;
   flex-wrap: nowrap;
 }
 /*--------Sitemap-----------*/
-div.wrapper7>.body>.sitemap {
+.wrapper7>section>.body>.sitemap {
   width: 70%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
-div.wrapper7>.body>.sitemap .header {
+.wrapper7>section>.body>.sitemap .header {
   width: 100%;
 }
-div.wrapper7>.body>.sitemap>div {
+.wrapper7>section>.body>.sitemap>div {
   width: 25%;
 }
-div.wrapper7>.body>.sitemap ul {
+.wrapper7>section>.body>.sitemap ul {
   padding: 0px;
 }
-div.wrapper7>.body>.sitemap li {
+.wrapper7>section>.body>.sitemap li {
   list-style: none;
 }
 /*---Wrapper(Newsletter, Language)----*/
-div.wrapper7>.body>.wrapper.newsletter.language {
+.wrapper7>section>.body>.wrapper.newsletter.language {
   width: 30%;
 }
 /*--------Newsletter--------*/
-div.wrapper7>.body>.newsletter .header {
+.wrapper7>section>.body>.newsletter .header {
   width: 100%;
 }
-div.wrapper7>.body>.newsletter .email {
+.wrapper7>section>.body>.newsletter .email {
   display: flex;
   justify-content: flex-start;
   width: 100%;
 }
-div.wrapper7>.body>.newsletter .email>input {
+.wrapper7>section>.body>.newsletter .email>input {
   box-sizing: border-box;
   width: 65%;
   overflow: hidden;
@@ -748,7 +789,7 @@ div.wrapper7>.body>.newsletter .email>input {
   padding: 15px;
   margin: 0px;
 }
-div.wrapper7>.body>.newsletter .email>input.submit {
+.wrapper7>section>.body>.newsletter .email>input.submit {
   width: 35%;
   color: white;
   text-align: center;
@@ -758,13 +799,13 @@ div.wrapper7>.body>.newsletter .email>input.submit {
   background: rgb(61, 161, 92);
   border: 1px solid rgb(61, 161, 92);
 }
-div.wrapper7>.body>.newsletter .privacyPolicy {
+.wrapper7>section>.body>.newsletter .privacyPolicy {
   margin: 20px 0px;
   display: flex;
   justify-content: flex-start;
   flex-wrap: nowrap;
 }
-div.wrapper7>.body>.newsletter .privacyPolicy>input {
+.wrapper7>section>.body>.newsletter .privacyPolicy>input {
   flex: 0 0 auto;
   width: 24px;
   height: 24px;
@@ -773,24 +814,24 @@ div.wrapper7>.body>.newsletter .privacyPolicy>input {
   background: white;
   opacity: 1;
 }
-div.wrapper7>.body>.newsletter .privacyPolicy>input:hover {
+.wrapper7>section>.body>.newsletter .privacyPolicy>input:hover {
   cursor: pointer;
 }
-div.wrapper7>.body>.newsletter .privacyPolicy>.statement {
+.wrapper7>section>.body>.newsletter .privacyPolicy>.statement {
   margin: 0px;
   padding: 0px;
 }
-div.wrapper7>.body>.newsletter .privacyPolicy>.statement p {
+.wrapper7>section>.body>.newsletter .privacyPolicy>.statement p {
   padding: 0px;
   margin: 0px;
 }
 /*--------Language--------*/
-div.wrapper7>.body>.wrapper>.language {
+.wrapper7>section>.body>.wrapper>.language {
   clear: both;
   max-height: 150px;
   /*overflow: hidden;*/
 }
-div.wrapper7>.body>.wrapper>.language>ul.language {
+.wrapper7>section>.body>.wrapper>.language>ul.language {
   max-height: 80px;
   margin: auto;
   display: flex;
@@ -798,24 +839,24 @@ div.wrapper7>.body>.wrapper>.language>ul.language {
   flex-wrap: wrap;
   padding: 0px 10px;
 }
-div.wrapper7>.body>.wrapper>.language li {
+.wrapper7>section>.body>.wrapper>.language li {
   list-style: none;
   width: 33%;
   padding: 0px 10px;
 }
 /*--------Partners--------*/
-div.wrapper7>.body.partners {
+.wrapper7>section>.body.partners {
   width: 100%;
 }
-div.wrapper7>.body.partners .header {
+.wrapper7>section>.body.partners .header {
   width: 100%;
 }
-div.wrapper7>.body.partners ul {
+.wrapper7>section>.body.partners ul {
   display: flex;
   flex-wrap: wrap;
   padding: 0px;
 }
-div.wrapper7>.body.partners li {
+.wrapper7>section>.body.partners li {
   list-style: none;
   margin: 5px;
   /* NOTE: placeholder below */
@@ -824,32 +865,32 @@ div.wrapper7>.body.partners li {
   background: #ccc;
 }
 /*--------Footer--------*/
-div.wrapper7>.footer {
+.wrapper7>section>.footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0px -1px 0px 0px #ccc;
   padding: 20px 0px;
 }
-div.wrapper7>.footer .legalInfo{
+.wrapper7>section>.footer .legalInfo{
   display: flex;
 }
-div.wrapper7>.footer .legalInfo .copyrights {
+.wrapper7>section>.footer .legalInfo .copyrights {
   padding-right: 10px;
 }
-div.wrapper7>.footer .legalInfo ul {
+.wrapper7>section>.footer .legalInfo ul {
   padding: 0px;
 }
-div.wrapper7>.footer .legalInfo li {
+.wrapper7>section>.footer .legalInfo li {
   list-style: none;
   display: inline-block;
   padding-right: 10px;
 }
-div.wrapper7>.footer .socialMedia ul {
+.wrapper7>section>.footer .socialMedia ul {
   padding: 0px;
   margin: 0px;
 }
-div.wrapper7>.footer .socialMedia li {
+.wrapper7>section>.footer .socialMedia li {
   width: 40px;
   height: 40px;
   list-style: none;
@@ -858,6 +899,6 @@ div.wrapper7>.footer .socialMedia li {
   background: #ccc;
   overflow: hidden;
 }
-div.wrapper7>.footer .socialMedia img {
+.wrapper7>section>.footer .socialMedia img {
 
 }

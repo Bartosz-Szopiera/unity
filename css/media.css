@@ -14,3 +14,64 @@
     display: unset;
   }
 }
+
+.wrapper1>section{width:}
+.wrapper2>section{width:}
+.wrapper3>section{width:}
+.wrapper4>section{width:}
+.wrapper5>section{width:}
+.wrapper6>section{width:}
+.wrapper7>section{width:}
+
+/*---Width > 1366px = 83.375em*/
+@media (min-width: 84em) {
+
+}
+/*---Width <= 1366px = 83.375em*/
+@media (max-width: 83.375em) {
+
+}
+/*---Width <= 1300px = 81.25em*/
+@media (max-width: 68.75em) {
+
+}
+/*---Width <= 1200px = 75.0em*/
+@media (max-width: 68.75em) {
+
+}
+/*---Width <= 1100px = 68.75em*/
+@media (max-width: 68.75em) {
+
+}
+/*---Width <= 1000px = 62.5em*/
+@media (max-width: 62.5em) {
+
+}
+/*---Width <= 1000px = 62.5em*/
+@media (max-width: 62.5em) {
+
+}
+/*---Width <= 900px = 56.25em*/
+@media (max-width: 56.25em) {
+
+}
+/*---Width <= 800px = 50em*/
+@media (max-width: 50.0em) {
+
+}
+/*---Width <= 700px = 43.75em*/
+@media (max-width: 43.75em) {
+
+}
+/*---Width <= 600px = 37.5em*/
+@media (max-width: 37.5em) {
+
+}
+/*---Width <= 500px = 31.25em*/
+@media (max-width: 31.25em) {
+
+}
+/*---Width <= 400px = 25em*/
+@media (max-width: 25.0em) {
+
+}
