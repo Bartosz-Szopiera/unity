@@ -37,10 +37,24 @@
         </div>
       </nav>
       <div class="panel searchTool">
-
+        <div class="header"><h3>Search Unity</h3></div>
+        <form class="search" action="index.html" method="GET">
+          <input class="text" type="text" name="query" value="">
+          <input class="submit" type="submit" name="" value="">
+        </form>
       </div>
       <div class="panel profile">
-
+        <div class="header">
+          <div class="avatar">
+            <img src="" alt="">
+          </div>
+          <h2>Unity ID</h2>
+        </div>
+        <p>A Unity ID allows you to buy and/or subscribe to Unity products and services, shop in the Asset Store and participate in the Unity community.</p>
+        <div class="buttons">
+          <div class="stdButton login"><a href="#">Log in</a></div>
+          <div class="stdButton createid"><a href="#">Create a Unity ID</a></div>
+        </div>
       </div>
       <div class="dimScreen"></div>
       <div class="header">
@@ -589,36 +603,63 @@
     function panel() {
       var el, el1, query; //generic element identifier
       if (this == window) {
-        // attach this function as 'click' handler
-        // on buttons
-        el = document.querySelectorAll('.button');
-        for (var i = 0; i < el.length; i++) {
-          el[i].addEventListener('click', panel);
+        if (event.type == 'load') {
+          // Attach this function as 'click' handler
+          // on buttons and on 'dimScreen' class div
+          el = document.querySelectorAll('.button');
+          for (var i = 0; i < el.length; i++) {
+            el[i].addEventListener('click', panel);
+          }
+          el = document.querySelector('.dimScreen');
+          el.addEventListener('click', panel);
         }
-        // remove 'show' class
-        el = document.querySelectorAll('.panel');
-        for (var i = 0; i < el.length; i++) {
-          el[i].classList.remove('show')
+        else if(event.type == 'resize') {
+          // Remove 'show' class
+          el = document.querySelectorAll('.panel');
+          for (var i = 0; i < el.length; i++) {
+            el[i].classList.remove('show')
+          }
         }
       }
-      else {
+      else if (this.classList.contains('button')) {
+        // Switch active panels or hide the
+        // current one
         query = this.dataset.target;
         el = document.getElementsByClassName(query)[0];
-        el.classList.toggle('show');
+        if (!el.classList.contains('show') &&
+            document.querySelectorAll('.show').length != 0) {
+        // if (!el.classList.contains('show')) {
+          setTimeout(function(el){
+            console.log('slow down');
+            el.classList.add('show');
+          },300, el)
+        }
+        else if (!el.classList.contains('show')) {
+          el.classList.add('show');
+          // Prevent scrolling of the document
+          // Through html{overflow:hidden}
+          document.documentElement.style.overflow = 'hidden';
+        }
+        else {
+          el.classList.remove('show');
+          document.documentElement.style.overflow = 'visible';
+        }
         el1 = document.querySelectorAll('.panel');
+        // Remove 'show' class from all buttons
+        // except for the clicked one
         for (var i = 0; i < el1.length; i++) {
           if (el1[i]!=el) {
             el1[i].classList.remove('show')
           }
         }
-        // Prevent scrolling of the document
-        // Through html{overflow:hidden}
-        if (el.classList.contains('show')) {
-          document.documentElement.style.overflow = 'hidden';
+      }
+      else { //Click on 'dimScreen' div
+        // Hide all panels
+        el = document.querySelectorAll('.panel');
+        for (var i = 0; i < el.length; i++) {
+          el[i].classList.remove('show')
         }
-        else {
-          document.documentElement.style.overflow = 'visible';
-        }
+        document.documentElement.style.overflow = 'visible';
       }
     }
   </script>
