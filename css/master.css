@@ -4,7 +4,7 @@
 
 /*====Page wide=====*/
 body {
-  background: red;
+  background: white;
   font-size: 0.625em;
   margin: 0px;
   padding: 0px;
@@ -15,7 +15,7 @@ a:link, a:visited, a:hover, a:active {
 }
 section {
   box-sizing: content-box;
-  width: 90%;
+  width: 92%;
   max-width: 1366px;
   margin: 0px auto;
   overflow: hidden;
@@ -24,11 +24,40 @@ section>*{
   max-width: 100%;
 }
 
+/*=====INTER-SECTIONS PADDING AND MARGIN=====*/
+.wrapper1>section {
+}
+.wrapper2>section {
+  width: 100%;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.wrapper3>section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.wrapper4>section {
+  width: 100%;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.wrapper5>section {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.wrapper6>section {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.wrapper7>section {
+  padding-top: 20px;
+  padding-bottom: 0px;
+}
 /*=====Standard elements====*/
 .logo {
   width: 40px;
   height: 40px;
-  padding: 10px;
+  /*padding: 10px;*/
   background: rgb(12, 59, 93);
   background-clip: content-box;
 }
@@ -61,6 +90,7 @@ section>*{
 .wrapper1>section {
   position: relative;
   height: 100vh;
+  max-height: 662px;
   overflow: visible;
 }
 .wrapper1>section>.wrapper-100vh {
@@ -89,7 +119,6 @@ section>*{
   line-height: 2.2em;
   position: absolute;
   right: 0px;
-  /*top: 80px;*/
   top: 0px;
   transform: translate(100%,0px);
   width: 600px;
@@ -338,8 +367,6 @@ section>*{
 div.slideshowWrapper {
   position: relative;
   margin: 0px 25px;
-  /*padding: 0px 25px;*/
-  /*overflow: hidden;*/
 }
 .slidesFrame {
   /* NOTE: width controls number of slides
@@ -424,6 +451,7 @@ div.slideshowWrapper {
   z-index: 2;
 }
 .slideshow.controls div.button {
+  font-size: 3em;
   box-sizing: border-box;
   width: 35px;
   height: 35px;
@@ -432,7 +460,6 @@ div.slideshowWrapper {
   background: white;
   text-align: center;
   overflow: visible;
-  font-size: 3em;
   color: black;
   font-weight: 300;
   font-family: 'entypo-plus';
@@ -509,45 +536,74 @@ div.slideshowWrapper {
   font-size: 2em;
 }
 .wrapper3 .offer {
-  padding: 15px 0px;
-  margin: auto;
-  width: 90%;
+  margin-top: 45px;
+  padding: 0px 2.5%;
   display: flex;
-  justify-content: space-around;
-  flex-wrap: nowrap;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 .wrapper3 .offer>div {
   box-sizing: border-box;
-  max-width: 20%;
-  flex-grow: 1;
+  width: 20%;
+  flex: 0 0 auto;
   position: relative;
 }
-.wrapper3 .offer>div+div {
-  box-shadow: -1px 0px 0px 0px #ccc;
+.wrapper3 .offer>div+div::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  box-shadow: -1px 0px 0px 0px #ddd;
+}
+.wrapper3 .offer>div::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background: white;
+  transition: transform 0.15s;
+}
+.wrapper3 .offer>div:hover::before {
+  box-shadow: 0px 0px 15px 1px #ddd;
+  z-index: 1;
+  transform: scale(1.04,1.04);
 }
 .wrapper3 .offer .image {
   position: absolute;
-  width: 60%;
-  height: 60%;
-  margin: auto;
-  left: 20%;
+  width: 45%;
+  height: 0%;
+  padding-bottom: 45%;
+  margin-top: 10%;
+  left: 27.5%;
   box-sizing: border-box;
   background: rgb(39, 167, 161);
+  z-index: 1;
 }
 .wrapper3 .offer .header {
   box-sizing: border-box;
   width: 100%;
   overflow: visible;
-  padding-top: 100%;
-  bottom: 0px;
+  padding-top: 85%;
+  bottom: 3%;
   position: relative;
+  background: transparent;
+  z-index: 1;
 }
 .wrapper3 .offer .header h4 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 2em;
   position: absolute;
   left: 0px;
   bottom: 10px;
   width: 100%;
-  font-size: 2em;
   padding: 0px;
   margin: 0px;
 }
@@ -563,10 +619,10 @@ div.slideshowWrapper {
   padding-bottom: 55%;
 }
 .wrapper4 .slideshow.left.button {
-  left: -5%;
+  left: -10%;
 }
 .wrapper4 .slideshow.right.button {
-  right: -5%;
+  right: -10%;
 }
 .wrapper4 .obscuringFrame {
   /* NOTE: width equal margin of outermost
@@ -590,26 +646,25 @@ div.slideshowWrapper {
 }
 .wrapper4 .allGamesLink {
   width: 160px;
-  margin: 20px auto;
+  margin: 25px auto;
+  margin-top: 35px;
 }
 /*====================*/
 .wrapper5 {
   background: rgb(253, 253, 253);
-}
-.wrapper5 {
-
 }
 .wrapper5 .showcase {
   margin: auto;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 .wrapper5 .showcase>div {
   box-sizing: border-box;
   width: 50%;
-  padding: 15px;
+  flex: 0 0 auto;
+  padding: 0px 15px;
   display: flex;
   flex-direction: column;
   align-content: flex-start;
@@ -621,9 +676,9 @@ div.slideshowWrapper {
   font-size: 3em;
 }
 .wrapper5 .showcase>div>div+div {
-  box-shadow: 0px -1px 0px 0px #ccc;
+  border-top: 1px solid #ebebeb;
 }
-.wrapper5 .showcase>div>div {
+.wrapper5 .showcase>.blog>div {
   box-sizing: border-box;
   max-width: 100%;
   width: 100%;
@@ -632,8 +687,30 @@ div.slideshowWrapper {
   justify-content: flex-start;
   align-items: center;
 }
+.wrapper5 .showcase>.blog>div div {
+  z-index: 1;
+}
+.wrapper5 .showcase>.blog .post {
+  position: relative;
+}
+.wrapper5 .showcase>.blog .post::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.15s;
+}
+.wrapper5 .showcase>.blog .post:hover::before {
+  box-shadow: 0px 0px 15px 1px #ddd;
+  background: white;
+  z-index: 1;
+  transform: scale(1.04,1.04);
+}
 .wrapper5 .showcase .body {
-  flex: 99 0 auto;
+  flex: 1 0 auto;
 }
 .wrapper5 .showcase .footer {
   align-self: flex-end;
@@ -641,35 +718,49 @@ div.slideshowWrapper {
 .wrapper5 .blog .post .image {
   background: lightgreen;
   flex: 0 0 auto;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   margin: 15px;
   margin-left: 0px;
 }
 .wrapper5 .blog .post .description {
   margin-left: 15px;
   flex: 1 1 auto;
-  width: 300px;
+  width: 100px;
+}
+.wrapper5 .blog .post .description .timestamp p {
+  font-size: 1.5em;
+  line-height: 1.5em;
+  padding: 0px;
+  margin: 0px;
 }
 .wrapper5 .blog .post .description h3 {
+  font-size: 2.5em;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   padding: 0px;
   margin: 0px;
-  font-size: 2em;
 }
 .wrapper5 .showcase>div .linkWrapper {
+  box-sizing: border-box;
+  width: 100%;
   padding: 5px;
   padding-left: 0px;
   flex: 0 0 auto;
-  align-self: flex-end;
+  align-self: flex-start;
+  display: flex;
 }
 .wrapper5 .showcase>div .linkWrapper * {
   margin-left: 0px;
 }
 .wrapper5 .showcase .video {
+  min-height: 250px;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
   background: #333;
+  background-clip: content-box;
   text-align: center;
   padding-top: 20px;
   margin-bottom: 20px;
@@ -700,14 +791,14 @@ div.slideshowWrapper {
   margin: auto;
 }
 .wrapper6 .header h2 {
+  font-size: 5em;
   padding: 0px;
   margin: 0px;
-  font-size: 5em;
 }
 .wrapper6 .tagline {
+  font-size: 2em;
   margin: auto;
   width: 80%;
-  font-size: 2em;
 }
 .wrapper6 .linkWrapper {
   display: flex;
@@ -742,26 +833,33 @@ div.slideshowWrapper {
 .wrapper7>section>.body.sitemap.newsletter.language {
   box-sizing: border-box;
   width: 100%;
-  /*height: 320px;*/
-  height: 400px;
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 /*--------Sitemap-----------*/
 .wrapper7>section>.body>.sitemap {
+  height: 320px;
   width: 70%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
+.wrapper7>section>.body>.sitemap>div {
+  padding: 10px 0px;
+}
 .wrapper7>section>.body>.sitemap .header {
   width: 100%;
+}
+.wrapper7>section>.body>.sitemap .header h3 {
+  padding: 10px 0px;
+  margin: 0px;
 }
 .wrapper7>section>.body>.sitemap>div {
   width: 25%;
 }
 .wrapper7>section>.body>.sitemap ul {
   padding: 0px;
+  margin: 0px;
 }
 .wrapper7>section>.body>.sitemap li {
   list-style: none;
@@ -769,8 +867,25 @@ div.slideshowWrapper {
 /*---Wrapper(Newsletter, Language)----*/
 .wrapper7>section>.body>.wrapper.newsletter.language {
   width: 30%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.wrapper7>section>.body>.wrapper.newsletter.language>div>.header>h3 {
+  margin: 0px;
+  padding: 10px 0px;
+}
+.wrapper7>section>.body>.wrapper.newsletter.language>div {
+  flex: 0 0 auto;
+}
+.wrapper7>section>.body>.wrapper.newsletter.language li{
+  box-sizing: border-box;
 }
 /*--------Newsletter--------*/
+.wrapper7>section>.body .wrapper>.newsletter {
+  box-sizing: border-box;
+  padding-right: 20px;
+}
 .wrapper7>section>.body>.newsletter .header {
   width: 100%;
 }
@@ -780,13 +895,14 @@ div.slideshowWrapper {
   width: 100%;
 }
 .wrapper7>section>.body>.newsletter .email>input {
+  font-size: 1em;
   box-sizing: border-box;
   width: 65%;
   overflow: hidden;
   flex: 0 0 auto;
-  font-size: 1em;
   height: 50px;
   padding: 15px;
+  padding-right: 0px;
   margin: 0px;
 }
 .wrapper7>section>.body>.newsletter .email>input.submit {
@@ -837,12 +953,13 @@ div.slideshowWrapper {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  padding: 0px 10px;
+  box-sizing: border-box;
+  padding: 0px;
 }
 .wrapper7>section>.body>.wrapper>.language li {
   list-style: none;
   width: 33%;
-  padding: 0px 10px;
+  padding: 0px;
 }
 /*--------Partners--------*/
 .wrapper7>section>.body.partners {
@@ -870,7 +987,9 @@ div.slideshowWrapper {
   align-items: center;
   justify-content: space-between;
   box-shadow: 0px -1px 0px 0px #ccc;
-  padding: 20px 0px;
+  padding-top: 20px;
+  padding-bottom: 0px;
+  margin-top: 30px;
 }
 .wrapper7>section>.footer .legalInfo{
   display: flex;
@@ -898,7 +1017,4 @@ div.slideshowWrapper {
   float: right;
   background: #ccc;
   overflow: hidden;
-}
-.wrapper7>section>.footer .socialMedia img {
-
 }

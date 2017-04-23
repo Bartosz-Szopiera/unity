@@ -425,7 +425,7 @@
               </div>
             </div>
           </div>
-          <div class="body nextEvent">
+          <div class="nextEvent">
             <div class="header">
               <h2>Next event</h2>
             </div>
@@ -537,7 +537,7 @@
               <div class="form">
                 <form class="signUp" action="index.html" method="post">
                   <div class="email">
-                    <input required type="text" name="email" value="" placeholder="Enter your email here.">
+                    <input required type="text" name="email" value="" placeholder="Enter your email here...">
                     <input type="submit" name="" value="Sign up" class="submit">
                   </div>
                   <div class="privacyPolicy">
@@ -609,14 +609,13 @@
   </body>
   <script type="text/javascript" src="js/slideshow.js"></script>
   <script type="text/javascript">
-    // Event listeners-------------------------------
+    // Event listeners--------------------
     window.addEventListener('load', closure.prepare);
     window.addEventListener('resize', closure.position);
     window.addEventListener('load', closure.autoShow);
-    // window.addEventListener('resize', closure.autoShow);
     window.addEventListener('load', panel);
     window.addEventListener('resize', panel);
-    // End: Event listeners-------------------------
+    // End: Event listeners--------------
 
     function panel() {
       var el, el1, el2, query; //generic element identifier

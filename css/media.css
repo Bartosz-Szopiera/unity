@@ -29,6 +29,7 @@
 }
 /*---Width <= 1366px = 83.375em*/
 @media (max-width: 83.375em) {
+.slidesFrame {width:33.333%;}
 
 }
 /*---Width <= 1300px = 81.25em*/
@@ -41,22 +42,61 @@
 }
 /*---Width <= 1100px = 68.75em*/
 @media (max-width: 68.75em) {
+.slidesFrame {width:50%;}
 
 }
 /*---Width <= 1000px = 62.5em*/
 @media (max-width: 62.5em) {
 
-}
-/*---Width <= 1000px = 62.5em*/
-@media (max-width: 62.5em) {
 
 }
 /*---Width <= 900px = 56.25em*/
 @media (max-width: 56.25em) {
-
+.wrapper7>section>.body>.sitemap {
+  width: 100%;}
+.wrapper7>section>.body>.sitemap {
+  height: 260px;}
+.wrapper7>section>.body>.wrapper.newsletter.language {
+  width: 100%;}
+.wrapper7>section>.body>.wrapper.newsletter.language {
+  flex-direction: row;}
+.wrapper7>section>.body>.wrapper.newsletter.language>div {
+  width: 50%;}
 }
 /*---Width <= 800px = 50em*/
 @media (max-width: 50.0em) {
+.wrapper3 .offer>div {
+  min-width: 33.333%;}
+.wrapper3 .offer>div+div::after {
+  box-shadow: none;}
+.wrapper5 .showcase>div {
+  width: 100%;}
+
+}
+/*---Width <= 750px = 46.875em*/
+@media (max-width: 46.875em) {
+.wrapper4 .slidesFrame {width:100%;}
+.wrapper7>section>.body>.sitemap>div {
+  width: 50%;}
+.wrapper7 .download, .wrapper7 .resources {
+  order: 1;
+}
+.wrapper7>section>.body>.sitemap {
+  height: 280px;}
+.wrapper7>section>.body>.sitemap li {
+  display: inline-block;
+  padding-right: 5px;}
+.wrapper7>section>.body.partners {
+  display: none;}
+.wrapper7>section>.body>.wrapper.newsletter.language>.newsletter {
+  width: 100%;}
+.wrapper7>section>.body>.wrapper.newsletter.language>.language{
+  width: 80%;}
+.wrapper7>section>.footer {
+  flex-direction: column;}
+.wrapper7>section>.footer>div:first-child {
+  order: 1;}
+
 
 }
 /*---Width <= 700px = 43.75em*/
@@ -65,13 +105,72 @@
 }
 /*---Width <= 600px = 37.5em*/
 @media (max-width: 37.5em) {
+.wrapper2 .slidesFrame {width:100%;}
 
 }
 /*---Width <= 500px = 31.25em*/
 @media (max-width: 31.25em) {
+.wrapper3 .offer>div {
+  min-width: 50%;}
 
 }
 /*---Width <= 400px = 25em*/
 @media (max-width: 25.0em) {
 
 }
+
+/*
+.stdButton {
+  font-size: 2.0em;}
+.wrapper1>section>.wrapper-100vh .panel {
+  font-size: 1em;}
+.wrapper1>section>.wrapper-100vh .panel.mobileMenu {
+  font-size: 2em;}
+.wrapper1>section>.wrapper-100vh .panel.searchTool h3 {
+  font-size: 2.5em;}
+.wrapper1>section>.wrapper-100vh .panel.searchTool>form>.text {
+  font-size: 2em;}
+.wrapper1>section>.wrapper-100vh .panel.profile>.header>h2 {
+  font-size: 4em;}
+.wrapper1>section>.wrapper-100vh .panel.profile>p {
+  font-size: 2em;}
+.wrapper1>section>.wrapper-100vh>.header {
+  font-size: 1.8em;}
+.wrapper1 div.headerSmall h2 {
+  font-size: 4.0em;}
+.wrapper1 div.headerBig h1 {
+  font-size: 10.0em;}
+.wrapper1 div.summary h3 {
+  font-size: 2.0em;}
+.slideshow.slidesFrame div.summary h3 {
+  font-size: 2.5em;}
+.slideshow.controls div.button {
+  font-size: 3em;}
+.wrapper3 .header h2 {
+  font-size: 5em;}
+.wrapper3 .text h3 {
+  font-size: 2em;}
+.wrapper3 .offer .header h4 {
+  font-size: 2em;}
+.wrapper4 .header h2 {
+  font-size: 5em;}
+.wrapper4 .tagline h3 {
+  font-size: 2.5em;}
+.wrapper5 .showcase>div .header h2 {
+  font-size: 3em;}
+.wrapper5 .blog .post .description h3 {
+  font-size: 2em;}
+.wrapper5 .showcase .video .timestamp p {
+  font-size: 2em;}
+.wrapper5 .showcase .video .title h3 {
+  font-size: 4em;}
+.wrapper5 .showcase .video .location p {
+  font-size: 2.5em;}
+.wrapper6 .header h2 {
+  font-size: 5em;}
+.wrapper6 .tagline {
+  font-size: 2em;}
+.wrapper7>section {
+  font-size: 1.5em;}
+.wrapper7>section>.body>.newsletter .email>input {
+  font-size: 1em;}*/
