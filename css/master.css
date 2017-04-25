@@ -428,13 +428,7 @@ div.slideshowWrapper {
 .slidesFrame div.imageFrame {
   width: 100%;
   overflow: hidden;
-  /* NOTE: Control minimal size of image */
-  /*min-height: 150px;*/
   transition: box-shadow 0.3s;
-  /*background: radial-gradient(
-  rgb(193, 201, 223),
-  rgb(56, 87, 170));
-  transition: transform 0.3s;*/
 }
 .wrapper2 .slidesFrame div.slideWrap .slide:hover .imageFrame {
   box-shadow: 0px 10px 20px 5px #ccc;
@@ -443,6 +437,7 @@ div.slideshowWrapper {
   transform: scale(1.08,1.08);
 }
 .slidesFrame div.image {
+
   width: 100%;
   /* NOTE: Control relative height of slide image */
   padding-bottom: 60%;
@@ -462,10 +457,25 @@ div.slideshowWrapper {
   width: 25%;
   border-top: 1px solid grey;
 }
+.wrapper2 .slideshow.slidesFrame div.summary::before {
+  content: "";
+  display: block;
+  width: 25%;
+  height: 2px;
+  margin: auto;
+  margin-bottom: 25px;
+  background: linear-gradient(to right, rgb(42, 198, 65), grey);
+}
+.slideshow.slidesFrame div.summary {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
 .slideshow.slidesFrame div.summary h3 {
   font-size: 2.4em;
   font-weight: 300;
   text-align: center;
+  margin: 0px;
+  color: #002835;
 }
 .slideshow.controls {
   height: 0px;
@@ -645,9 +655,9 @@ div.slideshowWrapper {
 /*second slideshow*/
 .wrapper4 {
   background: rgb(244, 248, 252);
+  color: #222c37;
 }
 .wrapper4 div.slideshowWrapper {
-  /*margin: 0px 110px;*/
   margin: 0px 12.5%;
 }
 .wrapper4 div.slideshow.imageFrame .image {
@@ -658,6 +668,9 @@ div.slideshowWrapper {
 }
 .wrapper4 .slideshow.right.button {
   right: -6.25%;
+}
+.wrapper4 .slideshow.slidesFrame div.summary {
+  margin-top: 20px;
 }
 .wrapper4 .slideshow.slidesFrame div.summary h3 {
   font-size: 1.8em;
