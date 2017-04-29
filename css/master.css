@@ -5,6 +5,19 @@ p, h1, h2, h3, h4, h5, h6, a {
 }
 
 /*====Page wide=====*/
+@font-face {
+  font-family: 'entypo-plus';
+  font-weight: normal;
+  font-style: normal;
+  src:url('https://unity3d.com/unity-fonts/entypo-plus/entypo.eot');
+  src:
+  url('https://unity3d.com/unity-fonts/entypo-plus/entypo.svg#entypo-plus')
+  format('svg'),
+  url('https://unity3d.com/unity-fonts/entypo-plus/entypo.ttf') format('truetype'),
+  url('https://unity3d.com/unity-fonts/entypo-plus/entypo.woff') format('woff'),
+  url('https://unity3d.com/unity-fonts/entypo-plus/entypo.eot#iefix') format('embedded-opentype');
+  /*svg is not working*/
+}
 body {
   background: white;
   font-size: 0.625em;
@@ -16,8 +29,8 @@ a:link, a:visited, a:hover, a:active {
   text-decoration: none;
 }
 section {
-  box-sizing: content-box;
   width: 92%;
+  box-sizing: content-box;
   max-width: 1366px;
   margin: 0px auto;
   overflow: hidden;
@@ -56,11 +69,21 @@ section>*{
   padding-bottom: 0px;
 }
 /*=====Standard elements====*/
-.logo {
-  width: 40px;
+.logo.white {
+  width: 100px;
+  height: 30px;
+  background: url(https://unity3d.com//profiles/unity3d/themes/unity/images/ui/sprites/core-sprite.png) 0 0 no-repeat;
+}
+.logo.black {
+  width: 100px;
   height: 40px;
-  background: rgb(12, 59, 93);
-  background-clip: content-box;
+  background: url(https://unity3d.com//profiles/unity3d/themes/unity/images/ui/sprites/core-sprite.png) 0 0 no-repeat;
+  background-position: -133px 0px;
+}
+.logo a {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 .stdButton {
   font-size: 2.0em;
@@ -88,7 +111,10 @@ section>*{
 .wrapper1 {
   color: white;
   width: 100%;
-  background: rgb(52, 102, 168);
+  /*background: rgb(52, 102, 168);*/
+  background: url(https://unity3d.com/profiles/unity3d/themes/unity/images/frontpage/unity-5_6.jpg) no-repeat;
+  background-position: bottom left;
+  background-size: cover;
   overflow: hidden;
 }
 .wrapper1>section {
@@ -220,7 +246,10 @@ section>*{
   height: 100px;
   width: 100px;
   border-radius: 50%;
-  background: black;
+}
+.wrapper1>section>.wrapper-100vh .panel.profile>.header>.avatar img {
+  width: 100%;
+  height: 100%;
 }
 .wrapper1>section>.wrapper-100vh .panel.profile>.header>h2 {
   font-size: 4em;
@@ -309,28 +338,38 @@ section>*{
 }
 .wrapper1 .menu.right>div.button.mobileMenu {
   display: unset;
-  width: 40px;
-  height: 40px;
-  margin: 10px;
-  background: rgb(22, 83, 128);
+  width: 22px;
+  height: 2px;
+  margin: 20px 15px;
+  padding: 3px 0px;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  background: white;
   background-clip: content-box;
 }
 .wrapper1 .menu.right>div.button:hover {
   cursor: pointer;
 }
 .wrapper1 div.button.searchTool {
-  width: 40px;
-  height: 40px;
-  margin: 10px;
-  background: rgb(12, 59, 93);
+  width: 25px;
+  height: 25px;
+  margin: 10px 15px;
+  /*background: rgb(12, 59, 93);*/
+  background: url('https://unity3d.com/profiles/unity3d/themes/unity/images/ui/sprites/core-sprite.png') 0 0 no-repeat;
+  background-position: -268px 0px;
   background-clip: content-box;
 }
 .wrapper1 div.button.profile {
   width: 40px;
   height: 40px;
-  margin: 10px;
-  background: rgb(12, 59, 93);
-  background-clip: content-box;
+  margin: 5px 15px;
+  margin-right: 5px;
+  /*background: rgb(12, 59, 93);*/
+  /*background-clip: content-box;*/
+}
+.wrapper1 div.button.profile img {
+  width: 100%;
+  height: 100%;
 }
 .wrapper1 div.body {
   box-sizing: border-box;
@@ -438,7 +477,7 @@ div.slideshowWrapper {
   transition: box-shadow 0.3s;
 }
 .wrapper2 .slidesFrame div.slideWrap .slide:hover .imageFrame {
-  box-shadow: 0px 10px 20px 5px #ccc;
+  box-shadow: 0px 10px 20px 3px #bbb;
 }
 .wrapper2 .slidesFrame div.slideWrap .image:hover {
   transform: scale(1.08,1.08);
@@ -486,20 +525,21 @@ div.slideshowWrapper {
 }
 .slideshow.controls {
   height: 0px;
-  width: 100%;
+  padding: 0px 15px; /* NOTE: equal slidesFrame padding */
   display: flex;
   justify-content: space-between;
   position: absolute;
   overflow: visible;
   top: 0px;
   left: 0px;
+  right: 0px;
   z-index: 2;
 }
 .slideshow.controls div.button {
   font-size: 3em;
   box-sizing: border-box;
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   border: 1px solid black;
   border-radius: 50%;
   background: white;
@@ -510,9 +550,25 @@ div.slideshowWrapper {
   font-family: 'entypo-plus';
   z-index: 1;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.slideshow.controls div.left.button {
+  transform: translate(-50%,0);
+}
+.slideshow.controls div.right.button {
+  transform: translate(50%,0);
+}
+.slideshow.button::before {
+  display: block;
+  font-size: 0.7em;
+  font-family: 'entypo-plus';
+  font-weight: normal;
+  font-style: normal;
 }
 .slideshow.left.button::before {
-  content: '\e92a';
+  content: '\e929';
 }
 .slideshow.right.button::before {
   content: '\e92a';
@@ -625,6 +681,8 @@ div.slideshowWrapper {
   transform: scale(1.04,1.04);
 }
 .wrapper3 .offer .image {
+  font-family: 'entypo-plus';
+  font-size: 6.5em;
   position: absolute;
   width: 45%;
   height: 0%;
@@ -632,8 +690,33 @@ div.slideshowWrapper {
   margin-top: 10%;
   left: 27.5%;
   box-sizing: border-box;
-  background: rgb(39, 167, 161);
+  /*background: rgb(39, 167, 161);*/
+  background: none;
   z-index: 1;
+}
+.wrapper3 .offer .image::before {
+  position: absolute;
+  transform: translate(-50%,0);
+}
+.wrapper3 .offer div:nth-of-type(1) .image::before {
+  content: "\e909";
+  color: #009688;
+}
+.wrapper3 .offer div:nth-of-type(2) .image::before {
+  content: "\e9fa";
+  color: #8ac249;
+}
+.wrapper3 .offer div:nth-of-type(3) .image::before {
+  content: "\e948";
+  color: #e91e63;
+}
+.wrapper3 .offer div:nth-of-type(4) .image::before {
+  content: "\ea37";
+  color: #00bcd4;
+}
+.wrapper3 .offer div:nth-of-type(5) .image::before {
+  content: "\ea07";
+  color: #f44336;
 }
 .wrapper3 .offer .header {
   box-sizing: border-box;
@@ -859,18 +942,21 @@ div.slideshowWrapper {
 }
 /*============================*/
 .wrapper6 {
-  background: #aaa;
+  /*background: #aaa;*/
+  background:
+  url('https://unity3d.com/profiles/unity3d/themes/unity/images/frontpage/careers.jpg') 50% 0 no-repeat;
+  background-size: cover;
 }
 .wrapper6 .weAreHiring {
   color: white;
   text-align: center;
-  padding: 20px 0px;
+  padding: 110px 0px;
 }
 .wrapper6 .header {
   margin: auto;
 }
 .wrapper6 .header h2 {
-  font-size: 4em;
+  font-size: 5em;
   padding: 0px;
   margin: 0px;
 }
@@ -879,9 +965,8 @@ div.slideshowWrapper {
   width: 90%;
 }
 .wrapper6 .tagline h3 {
-  font-size: 2em;
-  line-height: 1.5em;
-  font-size: 2em;
+  font-size: 2.4em;
+  line-height: 1.4em;
 }
 .wrapper6 .linkWrapper {
   display: flex;
@@ -1106,11 +1191,68 @@ div.slideshowWrapper {
 }
 .wrapper7>section>.body.partners li {
   list-style: none;
-  margin: 5px;
+  margin: 0px;
+  padding-right: 50px;
+  padding-bottom: 20px;
   /* NOTE: placeholder below */
-  width: 100px;
+  /*width: 100px;*/
   height: 30px;
-  background: #ccc;
+  /*background: #ccc;*/
+}
+.wrapper7>section>.body.partners li a {
+  display: block;
+  height: 100%;
+  background: url('https://unity3d.com/profiles/unity3d/themes/unity/images/ui/sprites/partners-sprite.png') no-repeat;
+  opacity: 0.3;
+}
+.wrapper7>section>.body.partners li a[title='Moolah'] {
+  width: 58px;
+  background-position: -981px 0;
+}
+.wrapper7>section>.body.partners li a[title='facebook'] {
+  width: 105px;
+  background-position: -675px 0;
+}
+.wrapper7>section>.body.partners li a[title='Google'] {
+  width: 77px;
+  height: 30px;
+  background-position: -781px 0;
+}
+.wrapper7>section>.body.partners li a[title='intel'] {
+  width: 41px;
+  background-position: -543px 0
+}
+.wrapper7>section>.body.partners li a[title='Microsoft'] {
+  width: 93px;
+  background-position: 0 0;
+}
+.wrapper7>section>.body.partners li a[title='Nintendo'] {
+  width: 89px;
+    background-position: -454px 0;
+}
+.wrapper7>section>.body.partners li a[title='oculus'] {
+  width: 91px;
+background-position: -584px 0;
+}
+.wrapper7>section>.body.partners li a[title='Qualcomm'] {
+  width: 94px;
+    background-position: -170px 0;
+}
+.wrapper7>section>.body.partners li a[title='Samsung'] {
+  width: 75px;
+    background-position: -379px 0;
+}
+.wrapper7>section>.body.partners li a[title='Sony'] {
+  width: 77px;
+    background-position: -93px 0;
+}
+.wrapper7>section>.body.partners li a[title='vuforia'] {
+  width: 97px;
+    background-position: -858px 0;
+}
+.wrapper7>section>.body.partners li a[title='mi'] {
+  width: 24px;
+background-position: -958px 0;
 }
 /*--------Footer--------*/
 .wrapper7>section>.footer {
@@ -1149,7 +1291,30 @@ div.slideshowWrapper {
   height: 40px;
   list-style: none;
   margin: 0px 5px;
-  float: right;
-  background: #ccc;
+  float: left;
+  /*background: #ccc;*/
   overflow: hidden;
+}
+.wrapper7>section>.footer .socialMedia li a {
+  opacity: 0.3;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background:
+   url('https://unity3d.com/profiles/unity3d/themes/unity/images/ui/sprites/core-sprite.png') 0 0 no-repeat;
+}
+.wrapper7>section>.footer .socialMedia li.facebook a {
+  background-position: 0 -77px;
+}
+.wrapper7>section>.footer .socialMedia li.twitter a {
+  background-position: -35px -77px;
+}
+.wrapper7>section>.footer .socialMedia li.google a {
+  background-position: -70px -77px;
+}
+.wrapper7>section>.footer .socialMedia li.linkedin a {
+  background-position: -105px -77px;
+}
+.wrapper7>section>.footer .socialMedia li.youtube a {
+  background-position: -140px -77px;
 }

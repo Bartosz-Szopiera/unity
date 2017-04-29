@@ -58,6 +58,10 @@
 }
 /*---Width <= 800px = 50em*/
 @media (max-width: 50.0em) {
+.wrapper1>section>.wrapper-100vh>.header {
+  height: 60px;}
+.wrapper1 div.body {
+  padding-top: 60px;}
 .wrapper3 .offer>div {
   min-width: 33.333%;}
 .wrapper3 .offer>div+div::after {
@@ -67,6 +71,8 @@
 }
 /*---Width <= 750px = 46.875em*/
 @media (max-width: 46.875em) {
+section {
+  width: 96%;}
 .wrapper4 .slidesFrame {width:100%;}
 .wrapper7>section>.body>.sitemap>div {
   width: 50%;
